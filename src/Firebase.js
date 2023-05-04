@@ -1,7 +1,7 @@
 import { initializeApp } from "firebase/app";
 import { getFirestore } from "firebase/firestore";
 import { getStorage } from "firebase/storage";
-import { getAuth, onAuthStateChanged } from "firebase/auth";
+import { getAuth, onAuthStateChanged, GoogleAuthProvider, signInWithPopup} from "firebase/auth";
 import { useState, useEffect } from 'react'
 
 const firebaseConfig = {
@@ -25,6 +25,22 @@ export function useAuth() {
 const fbapp = initializeApp(firebaseConfig);
 const db = getFirestore(fbapp);
 const storage = getStorage(fbapp);
+
+export const handleGoogleSignIn = () => {
+    const auth = getAuth();
+    const provider = new GoogleAuthProvider();
+    signInWithPopup(auth,provider)
+        .then((result) => {
+            console.log("SIGNED IN!")
+            const user = result.user
+            console.log(user.displayName)
+        })
+        .catch((error) => {
+            console.log(error)
+        })
+}
+
+
 
 export { db, storage, fbapp };
 
