@@ -5,14 +5,14 @@ import { getAuth, onAuthStateChanged } from "firebase/auth";
 import { useState, useEffect } from 'react'
 
 const firebaseConfig = {
-    apiKey: "AIzaSyCY-s3E55dzANjyk5s8iPiBTwkNVKAkkR4",
-    authDomain: "homehop-89111.firebaseapp.com",
-    projectId: "homehop-89111",
-    storageBucket: "homehop-89111.appspot.com",
-    messagingSenderId: "777311341482",
-    appId: "1:777311341482:web:bf09fceab582066e7bb9d3",
-    measurementId: "G-0BNSQ6LDHF"
-};
+    apiKey: "AIzaSyArqA1i--TGXyuvN1yvf5WJTEjx01V7Tkc",
+    authDomain: "rally-time-ea874.firebaseapp.com",
+    projectId: "rally-time-ea874",
+    storageBucket: "rally-time-ea874.appspot.com",
+    messagingSenderId: "732935229980",
+    appId: "1:732935229980:web:963fb55172bc9beacd85d9",
+    measurementId: "G-FQD742J753"
+  };
 
 export function useAuth() {
     const [userState, setUserState] = useState()
