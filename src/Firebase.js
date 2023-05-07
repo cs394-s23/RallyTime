@@ -1,7 +1,7 @@
 import { initializeApp } from "firebase/app";
 import { getFirestore } from "firebase/firestore";
 import { getStorage } from "firebase/storage";
-import { getAuth, onAuthStateChanged, GoogleAuthProvider, signInWithPopup} from "firebase/auth";
+import { getAuth, onAuthStateChanged, GoogleAuthProvider, signInWithPopup } from "firebase/auth";
 import { useState, useEffect } from 'react'
 
 const firebaseConfig = {
@@ -12,16 +12,16 @@ const firebaseConfig = {
     messagingSenderId: "732935229980",
     appId: "1:732935229980:web:963fb55172bc9beacd85d9",
     measurementId: "G-FQD742J753"
-  };
+};
 
 export function useAuth() {
     const [userState, setUserState] = useState()
     useEffect(() => {
-      onAuthStateChanged(getAuth(fbapp), setUserState)
+        onAuthStateChanged(getAuth(fbapp), setUserState)
     }, [])
     return userState
 }
-  
+
 const fbapp = initializeApp(firebaseConfig);
 const db = getFirestore(fbapp);
 const storage = getStorage(fbapp);
@@ -29,11 +29,14 @@ const storage = getStorage(fbapp);
 export const handleGoogleSignIn = () => {
     const auth = getAuth();
     const provider = new GoogleAuthProvider();
-    signInWithPopup(auth,provider)
+    signInWithPopup(auth, provider)
         .then((result) => {
             console.log("SIGNED IN!")
             const user = result.user
             console.log(user.displayName)
+        })
+        .then(() => {
+            window.location.href = "/dashboard"
         })
         .catch((error) => {
             console.log(error)
@@ -43,5 +46,3 @@ export const handleGoogleSignIn = () => {
 
 
 export { db, storage, fbapp };
-
-  

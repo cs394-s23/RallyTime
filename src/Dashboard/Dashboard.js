@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import { collection, doc, getDocs } from "firebase/firestore"; 
 import { db } from '../Firebase';
 
@@ -12,9 +12,13 @@ function Dashboard() {
 		});
 	}
 
+	useEffect(() => {
+		loadFanclub()
+	}, [])
+
   return (
     <div>
-      
+      <h1>Dashboard</h1>
     </div>
   )
 }

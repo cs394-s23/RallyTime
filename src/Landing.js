@@ -1,3 +1,4 @@
+import { useEffect } from "react"
 import { handleGoogleSignIn } from "./Firebase"
 
 const LandingPage = () => {
