@@ -1,38 +1,52 @@
 import React, { useEffect, useState } from 'react'
-import { collection, getDocs } from "firebase/firestore"; 
+import { collection, getDocs } from "firebase/firestore";
 import { db } from '../Firebase';
 import Card from './Card';
+import { useAuth } from '../Firebase';
 
 function Dashboard() {
+  const [fanclubs, setFanclubs] = useState([]);
+  const [filteredFanclubs, setFilteredFanclubs] = useState([]);
+  const user = useAuth();
 
-	const [fanclubs, setFanclubs] = useState([])
+  async function loadFanclub() {
+    const querySnapshot = await getDocs(collection(db, "fanclub"));
+    const fanclubDocs = [];
+    querySnapshot.forEach((doc) => {
+      fanclubDocs.push(doc);
+    });
+    setFanclubs(fanclubDocs);
+  }
 
-	const loadFanclub = async () => {
-		const querySnapshot = await getDocs(collection(db, "fanclub"));
-		querySnapshot.forEach((doc) => {
-			// doc.data() is never undefined for query doc snapshots
-			// console.log(doc.id, " => ", doc.data());
-			setFanclubs([...fanclubs, doc])
-		});
-	}
+  async function filterFanclubs() {
+    const userID = await user.uid;
+    const activeFanclubs = [];
+    fanclubs.forEach((fanclubDoc) => {
+      const fanclubData = fanclubDoc.data();
+      const fanclubMemberIDs = new Set(fanclubData.members);
+      if (fanclubMemberIDs.has(userID)) {
+        activeFanclubs.push(fanclubDoc);
+      }
+    });
+    setFilteredFanclubs(activeFanclubs);
+  }
 
-	const renderFanclub = () => {
-		return fanclubs.map((fanclubDoc) => {
-			// console.log(fanclubDoc.id, " => ", fanclubDoc.data());
-			return <Card docid={fanclubDoc.id} doc={fanclubDoc.data()} />
-	})
-	}
+  useEffect(() => {
+    loadFanclub();
+  }, []);
 
-	useEffect(() => {
-		loadFanclub()
-	}, [])
+  useEffect(() => {
+    filterFanclubs();
+  }, [user, fanclubs]);
 
   return (
     <div>
       <h1>Dashboard</h1>
-			{renderFanclub()}
+      {filteredFanclubs.map((fanclub) => (
+        <Card docid={fanclub.id} doc={fanclub.data()} />
+      ))}
     </div>
-  )
+  );
 }
 
-export default Dashboard
+export default Dashboard;
