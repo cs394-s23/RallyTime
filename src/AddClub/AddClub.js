@@ -2,15 +2,22 @@ import {useFormik} from "formik"
 import { db, storage, fbapp } from "../Firebase.js"
 import { addDoc, collection } from "firebase/firestore"
 import Form from 'react-bootstrap/Form';
+import { useAuth } from '../Firebase';
 
 
 
 function AddClub() {
-    // const user = useAuth()
+    const user = useAuth();
+    // const [userID, setUserID] = useState([]);
+    // let userID = '';
+    // values.members.append(userID)
 
+    // async function getID() {
+    //     userID = await user.uid;
+    // }
 
     async function submitForm(data) {
-
+        data.members.push(await user.uid)
         let docRef = await addDoc(collection(db, 'fanclub'), data);
         return docRef.id;
     };
