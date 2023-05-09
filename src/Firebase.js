@@ -46,7 +46,7 @@ export const handleGoogleSignIn = () => {
             console.log(user.displayName)
         })
         .then(() => {
-            window.location.href = "/chat"
+            window.location.href = "/dashboard"
         })
         .catch((error) => {
             console.log(error)
