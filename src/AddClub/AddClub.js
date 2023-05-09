@@ -2,6 +2,8 @@ import {useFormik} from "formik"
 import { db, storage, fbapp } from "../Firebase.js"
 import { addDoc, collection } from "firebase/firestore"
 import Form from 'react-bootstrap/Form';
+import Navbar from "../Dashboard/Navbar.js";
+import "./AddClub.css"
 
 
 
@@ -66,9 +68,12 @@ function AddClub() {
     }
 
     return (
+        <>
+        <Navbar />
         <div>
             {ClubForm()}
         </div>
+        </>
     )
 }
 

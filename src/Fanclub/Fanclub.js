@@ -4,7 +4,10 @@ import { doc, getDoc } from "firebase/firestore";
 import { db } from '../Firebase';
 
 import ChatRoom from '../Chat/ChatRoom';
-import "./Fanclub.css"
+import "./Fanclub.css";
+import Navbar from '../Dashboard/Navbar';
+
+
 
 function Fanclub() {
 
@@ -29,6 +32,8 @@ function Fanclub() {
 	}, [])
 
   return (
+	<>
+	<Navbar />
     <div className='container'>
       <h1>Fanclub for {fanclubData.athlete}</h1>
 			<h3>Manager: {fanclubData.manager}</h3>
@@ -37,6 +42,7 @@ function Fanclub() {
 				<ChatRoom docid={docid} data={fanclubData} />
 			</div>
     </div>
+	</>
   )
 }
 
