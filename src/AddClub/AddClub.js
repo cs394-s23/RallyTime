@@ -3,8 +3,8 @@ import { db, storage, fbapp } from "../Firebase.js"
 import { addDoc, collection } from "firebase/firestore"
 import Form from 'react-bootstrap/Form';
 import { useAuth } from '../Firebase';
-
-
+import Navbar from "../Dashboard/Navbar.js";
+import "./AddClub.css"
 
 function AddClub() {
     const user = useAuth();
@@ -66,9 +66,12 @@ function AddClub() {
     }
 
     return (
+        <>
+        <Navbar />
         <div>
             {ClubForm()}
         </div>
+        </>
     )
 }
 
