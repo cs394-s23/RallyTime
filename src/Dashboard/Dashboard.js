@@ -3,7 +3,8 @@ import { collection, getDocs } from "firebase/firestore";
 import { db } from '../Firebase';
 import Card from './Card';
 import { useAuth } from '../Firebase';
-import "./Dashboard.css"
+import "./Dashboard.css";
+import Navbar from './Navbar';
 
 function Dashboard() {
   const [fanclubs, setFanclubs] = useState([]);
@@ -41,6 +42,8 @@ function Dashboard() {
   }, [user, fanclubs]);
 
   return (
+    <>
+    <Navbar />
     <div className='container'>
       <h1>Dashboard</h1>
       <div className='fanclub'>
@@ -50,6 +53,7 @@ function Dashboard() {
       ))}
       </div>
     </div>
+    </>
   );
 }
 
