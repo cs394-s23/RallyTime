@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react';
 import { db } from '../Firebase';
 import { doc, updateDoc } from "firebase/firestore";
+import "./ChatRoom.css"
 
 
 function ChatRoom({ docid, data }) {
@@ -30,12 +31,13 @@ function ChatRoom({ docid, data }) {
   }, [data])
 
   return (
-    <div>
+    <div className='container'>
       {
         messages.map((message) => (
           <p>{message}</p>
         ))
       }
+      <div className='chatroom'>
       <form onSubmit={handleSubmit}>
         <input
           value={formValue}
@@ -46,6 +48,8 @@ function ChatRoom({ docid, data }) {
           Submit
         </button>
       </form>
+      </div>
+
     </div>
   );
 }
