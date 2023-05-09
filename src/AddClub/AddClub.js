@@ -8,13 +8,6 @@ import { useAuth } from '../Firebase';
 
 function AddClub() {
     const user = useAuth();
-    // const [userID, setUserID] = useState([]);
-    // let userID = '';
-    // values.members.append(userID)
-
-    // async function getID() {
-    //     userID = await user.uid;
-    // }
 
     async function submitForm(data) {
         data.members.push(await user.uid)
