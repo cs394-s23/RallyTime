@@ -1,8 +1,47 @@
-.container {
-    align-text: center;
-    border-style: solid;
-    
-}
+/* ChatRoom CSS */
 
-/* .chatroom {
-} */
+.container {
+    padding: 20px;
+    background-color: #fff2e6;
+    color: #333;
+  }
+  
+  .chatroom-container {
+    margin-top: 20px;
+    border: 2px solid rgb(255, 199, 44); /* added yellow border */
+    padding: 10px;
+  }
+  
+  .chatroom {
+    margin-top: 10px;
+  }
+  
+  .chatroom p {
+    margin: 10px 0;
+  }
+  
+  .chatroom form {
+    display: flex;
+    flex-direction: row;
+    margin-top: 10px;
+  }
+  
+  .chatroom input {
+    flex: 1;
+    padding: 5px; /* changed to smaller padding */
+    border: none;
+    border-radius: 5px;
+    font-size: 16px;
+  }
+  
+  .chatroom button {
+    padding: 10px;
+    border: none;
+    border-radius: 5px;
+    background-color: rgb(255, 199, 44); /* changed to yellow */
+    color: #fff;
+    font-size: 16px;
+    font-weight: bold;
+    margin-left: 10px;
+  }
+  
