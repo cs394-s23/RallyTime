@@ -18,9 +18,12 @@ function AddClub() {
     const ClubForm = () => {
         const formik = useFormik({
             initialValues: {
-                name: '',
+                athlete: '',
+                manager:'',
                 description:'',
-                manager:''
+                group_messages: [],
+                direct_messages: [],
+                members: []
             },
             onSubmit: async (values) => {
                 await submitForm(values);
@@ -29,14 +32,23 @@ function AddClub() {
 
         return (
             <Form onSubmit={formik.handleSubmit}>
-                <Form.Label>Name</Form.Label>
+                <Form.Label>Athlete</Form.Label>
                 <Form.Control
-                    id="name"
-                    name="name"
+                    id="athlete"
+                    name="athlete"
                     type="text"
                     onChange={formik.handleChange}
-                    value={formik.values.name}
+                    value={formik.values.athlete}
                 />
+
+                <Form.Label>Manager</Form.Label>
+                <Form.Control
+                    id='manager'
+                    name='manager'
+                    type='text'
+                    onChange={formik.handleChange}
+                    value={formik.values.manager}
+                />          
 
                 <Form.Label>Description</Form.Label>
                 <Form.Control
@@ -47,14 +59,7 @@ function AddClub() {
                     value={formik.values.description}
                 />
 
-                <Form.Label>Manager</Form.Label>
-                <Form.Control
-                    id='manager'
-                    name='manager'
-                    type='text'
-                    onChange={formik.handleChange}
-                    value={formik.values.manager}
-                />
+                
                 <button className="bttn" type="submit">Submit</button>
             </Form>
         )
