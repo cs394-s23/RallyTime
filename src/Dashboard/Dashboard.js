@@ -3,6 +3,7 @@ import { collection, getDocs } from "firebase/firestore";
 import { db } from '../Firebase';
 import Card from './Card';
 import { useAuth } from '../Firebase';
+import "./Dashboard.css"
 
 function Dashboard() {
   const [fanclubs, setFanclubs] = useState([]);
@@ -40,11 +41,14 @@ function Dashboard() {
   }, [user, fanclubs]);
 
   return (
-    <div>
+    <div className='container'>
       <h1>Dashboard</h1>
+      <div className='fanclub'>
+
       {filteredFanclubs.map((fanclub) => (
         <Card docid={fanclub.id} doc={fanclub.data()} />
       ))}
+      </div>
     </div>
   );
 }
