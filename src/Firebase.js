@@ -54,5 +54,4 @@ export const handleGoogleSignIn = () => {
 }
 
 
-
-export { db, storage, fbapp, realtime_db, auth};
+export { db, storage, fbapp };

@@ -1,0 +1,13 @@
+.fanclub{
+    display: flex;
+    flex-direction: row;
+    align-content: flex-start;
+    height: auto;
+    width: 75%;
+}
+
+.fanclub > * {
+    margin: 20px;
+    height: 200px;
+    width: 200px;
+}

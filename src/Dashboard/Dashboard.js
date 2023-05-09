@@ -1,26 +1,56 @@
-import React, { useEffect } from 'react'
-import { collection, doc, getDocs } from "firebase/firestore"; 
+import React, { useEffect, useState } from 'react'
+import { collection, getDocs } from "firebase/firestore";
 import { db } from '../Firebase';
+import Card from './Card';
+import { useAuth } from '../Firebase';
+import "./Dashboard.css"
 
 function Dashboard() {
+  const [fanclubs, setFanclubs] = useState([]);
+  const [filteredFanclubs, setFilteredFanclubs] = useState([]);
+  const user = useAuth();
 
-	const loadFanclub = async () => {
-		const querySnapshot = await getDocs(collection(db, "fanclub"));
-		querySnapshot.forEach((doc) => {
-			// doc.data() is never undefined for query doc snapshots
-			console.log(doc.id, " => ", doc.data());
-		});
-	}
+  async function loadFanclub() {
+    const querySnapshot = await getDocs(collection(db, "fanclub"));
+    const fanclubDocs = [];
+    querySnapshot.forEach((doc) => {
+      fanclubDocs.push(doc);
+    });
+    setFanclubs(fanclubDocs);
+  }
 
-	useEffect(() => {
-		loadFanclub()
-	}, [])
+  async function filterFanclubs() {
+    const userID = await user.uid;
+    const activeFanclubs = [];
+    fanclubs.forEach((fanclubDoc) => {
+      const fanclubData = fanclubDoc.data();
+      const fanclubMemberIDs = new Set(fanclubData.members);
+      if (fanclubMemberIDs.has(userID)) {
+        activeFanclubs.push(fanclubDoc);
+      }
+    });
+    setFilteredFanclubs(activeFanclubs);
+  }
+
+  useEffect(() => {
+    loadFanclub();
+  }, []);
+
+  useEffect(() => {
+    filterFanclubs();
+  }, [user, fanclubs]);
 
   return (
-    <div>
+    <div className='container'>
       <h1>Dashboard</h1>
+      <div className='fanclub'>
+
+      {filteredFanclubs.map((fanclub) => (
+        <Card docid={fanclub.id} doc={fanclub.data()} />
+      ))}
+      </div>
     </div>
-  )
+  );
 }
 
-export default Dashboard
+export default Dashboard;
