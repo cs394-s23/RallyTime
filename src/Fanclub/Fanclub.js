@@ -19,17 +19,11 @@ function Fanclub() {
 		const docRef = doc(db, 'fanclub', docid);
 		const docSnapshot = await getDoc(docRef);
 		
-
 		if (docSnapshot.exists()) {
 			await setFanclubData(docSnapshot.data())
 		} else {
 			console.log('No such document!');
-		}	
-	
-		
-		
-		// }		
-		
+		}			
 	}
 
 	useEffect(() => {
