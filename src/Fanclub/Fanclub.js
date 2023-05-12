@@ -21,14 +21,7 @@ function Fanclub() {
 		
 
 		if (docSnapshot.exists()) {
-			// console.log('Document data:', docSnapshot.data());
 			await setFanclubData(docSnapshot.data())
-			// const userID = await user.uid
-			// const fanclubMemberIDs = await new Set(await fanclubData.members)
-			// console.log(fanclubMemberIDs)
-			// if (!fanclubMemberIDs.has(userID)) {
-			// 	console.log("adding you to fanclub")
-			// }
 		} else {
 			console.log('No such document!');
 		}	
