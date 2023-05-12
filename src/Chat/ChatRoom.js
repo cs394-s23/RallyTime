@@ -44,7 +44,7 @@ function ChatRoom({ docid, data }) {
     <div className='container'>
       {
         messages.map((message) => (
-          message.userID !== user.uid ? <p>{message.userName} : {message.content}</p> : <p>You : {message.content}</p>
+          message.userID !== user.uid ? <p>{message.userName}: {message.content}</p> : <p>You: {message.content}</p>
         ))
       }
       <div className='chatroom'>
