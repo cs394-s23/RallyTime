@@ -2,11 +2,13 @@ import { useEffect, useState } from 'react';
 import { db } from '../Firebase';
 import { doc, updateDoc } from "firebase/firestore";
 import "./ChatRoom.css"
+import { useAuth } from '../Firebase'
 
 
 function ChatRoom({ docid, data }) {
   const [messages, setMessages] = useState([])
   const [formValue, setFormValue] = useState('');
+  const user = useAuth();
 
   const loadMessages = () => {
     setMessages(data?.group_messages || [])
@@ -14,14 +16,22 @@ function ChatRoom({ docid, data }) {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    const userID = await user.uid
+    const userName = await user.displayName
   
-    const newMessage = formValue;
+    const newMessage = {
+      userID: userID,
+      userName: userName,
+      content: formValue
+    };
+
     setFormValue("");
   
     const newMessages = [...messages, newMessage];
     setMessages(newMessages);
   
     const docRef = doc(db, "fanclub", docid);
+
     await updateDoc(docRef, { group_messages: newMessages });
   };
   
@@ -34,7 +44,7 @@ function ChatRoom({ docid, data }) {
     <div className='container'>
       {
         messages.map((message) => (
-          <p>{message}</p>
+          message.userID !== user.uid ? <p>{message.userName} : {message.content}</p> : <p>You : {message.content}</p>
         ))
       }
       <div className='chatroom'>
