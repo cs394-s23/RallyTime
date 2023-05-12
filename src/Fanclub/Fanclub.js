@@ -49,9 +49,7 @@ function Fanclub() {
 	}, [])
 
 	const copyInviteLink = async () => {
-		//await console.log("SAY SOMETHING")
 		const inviteLink = await window.location.href;
-		//const inviteLink = "hi"
 		try {
 			await navigator.clipboard.writeText(inviteLink)
 			console.log('Copied link:', inviteLink)
@@ -59,8 +57,8 @@ function Fanclub() {
 		catch (error) {
 			console.log('Failed to copy:', error)
 		}
-
 	}
+	
 	return (
 		<>
 		<Navbar />
