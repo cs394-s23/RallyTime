@@ -1,10 +1,10 @@
 /* Fanclub CSS */
 
-.container {
+/* .container {
     padding: 10px;
     background-color: rgb(29, 66, 138);
     color: #fff;
-  }
+  } */
   
   h1 {
     font-size: 24px;
@@ -24,7 +24,7 @@
     box-shadow: 0 0 5px rgba(0, 0, 0, 0.3);
     padding: 10px;
     margin-top: 10px;
-    border: 2px solid rgb(255, 199, 44); /* added yellow border */
+    border: 2px solid rgb(255, 199, 44);
   }
   
   .chatroom-header {
@@ -61,7 +61,7 @@
     padding: 10px;
     border: none;
     border-radius: 5px;
-    background-color: rgb(255, 199, 44); /* changed to yellow */
+    background-color: rgb(255, 199, 44); 
     color: #fff;
     font-size: 14px;
     font-weight: bold;
