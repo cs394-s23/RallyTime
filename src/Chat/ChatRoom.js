@@ -41,7 +41,7 @@ function ChatRoom({ docid, data }) {
   }, [data])
 
   return (
-    <div className='container'>
+    <div className='cont'>
         <div class="box-shadow">
           <h1>Message Board</h1> <hr/>
             <div>

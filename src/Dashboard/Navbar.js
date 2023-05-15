@@ -6,11 +6,12 @@ import './Navbar.css';
 function Navbar() {
   return (
     <nav className='sticky'>
-      <div className="nav-logo">
+      {/* <div className="nav-logo"> */}
         
         {/* <a href="/home"><img src={bunny} alt='HomeHop Logo' height='60' /></a> */}
 
-      </div>
+      {/* </div> */}
+      <p className='title'>RallyTime</p>
         <ul>
             <li><a href="/dashboard"><strong>Dashboard</strong></a></li>
             <li><a href="/AddClub">Add Club</a></li>

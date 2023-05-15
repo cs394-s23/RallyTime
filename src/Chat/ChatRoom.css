@@ -10,14 +10,14 @@
   padding: 10px;
 }
 
-.container {
+.cont {
     padding: 30px;
     margin: 50px;
     /* background-color: #fff2e6; */
     background-color:  rgb(29, 66, 138);
     border-radius: 25px;
     color: #333;
-    width: 800px;
+    width: 600px;
   }
   
    .chatroom-container {

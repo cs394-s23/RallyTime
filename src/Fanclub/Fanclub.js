@@ -61,16 +61,13 @@ function Fanclub() {
 	return (
 		<div>
 			<Navbar />
-			<div>
+			<div className='info'>
 				<h1>Fanclub for {fanclubData.athlete}</h1>
 				<h3>Manager: {fanclubData.manager}</h3>
-				{/* <div>
-					<h3>ChatRoom</h3>
-					<ChatRoom docid={docid} data={fanclubData} />
-				</div> */}
 				<button onClick={copyInviteLink} className="button">
 					Copy Invite Link
 				</button>
+
 			</div>
 			<ChatRoom docid={docid} data={fanclubData} />
 		</div>
