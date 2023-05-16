@@ -44,8 +44,9 @@ function Dashboard() {
   return (
     <>
     <Navbar />
+    <h1>Dashboard</h1>
     <div className='container'>
-      <h1>Dashboard</h1>
+      <h2>Your Clubs</h2>
       <div className='fanclub'>
 
       {filteredFanclubs.map((fanclub) => (

@@ -1,12 +1,12 @@
 /* Navbar CSS */
 
 nav {
-    background-color: rgb(29, 66, 138); /* blue background */
-    color: #fff; /* white text */
+    background-color: rgb(29, 66, 138);
+    color: #fff; 
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 10px;
+    /* padding: 10px; */
   }
   
   nav ul {
@@ -21,7 +21,7 @@ nav {
   }
   
   nav ul li a {
-    color: #fff;
+    color: white;
     text-decoration: none;
     position: relative;
     font-weight: normal;
@@ -32,7 +32,14 @@ nav {
     font-weight: normal;
   }
   
-  nav ul li a.current {
-    font-weight: bold;
+  .title {
+    font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+    font-size: 30px;
+    margin: 15px;
+    color: white;
+    text-decoration: none;
   }
+  /* nav ul li a.current {
+    font-weight: bold;
+  } */
   

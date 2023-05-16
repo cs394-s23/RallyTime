@@ -2,7 +2,6 @@ import React, { useEffect, useState } from 'react'
 import { useParams } from 'react-router-dom';
 import { doc, getDoc, updateDoc } from "firebase/firestore";
 import { db, useAuth } from '../Firebase';
-
 import ChatRoom from '../Chat/ChatRoom';
 import "./Fanclub.css";
 import Navbar from '../Dashboard/Navbar';
@@ -60,20 +59,18 @@ function Fanclub() {
 	}
 	
 	return (
-		<>
-		<Navbar />
-		<div className='container'>
-		<h1>Fanclub for {fanclubData.athlete}</h1>
+		<div>
+			<Navbar />
+			<div className='info'>
+				<h1>Fanclub for {fanclubData.athlete}</h1>
 				<h3>Manager: {fanclubData.manager}</h3>
-				<div>
-					<h3>ChatRoom</h3>
-					<ChatRoom docid={docid} data={fanclubData} />
-				</div>
-				<button onClick={copyInviteLink} className="button">
+				<button onClick={copyInviteLink} className='invite_link'>
 					Copy Invite Link
 				</button>
+
+			</div>
+			<ChatRoom docid={docid} data={fanclubData} />
 		</div>
-		</>
 	)
 	
 }
