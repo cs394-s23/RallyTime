@@ -45,7 +45,7 @@ function ChatRoom({ docid, data }) {
         <div class="box-shadow">
           <h1>Message Board</h1> <hr/>
             <div>
-              <span>
+              <span className='chat-backdrop'>
                   {
                     messages.map((message) => (
                       message.userID !== user.uid ? 
@@ -65,8 +65,9 @@ function ChatRoom({ docid, data }) {
             value={formValue}
             onChange={(e) => setFormValue(e.target.value)}
             placeholder="Type your message"
+            className='type-text'
           />
-          <button type="submit" disabled={!formValue}>
+          <button type="submit" disabled={!formValue} className='send-text'>
             Submit
           </button>
         </form>

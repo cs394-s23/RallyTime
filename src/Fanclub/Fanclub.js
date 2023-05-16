@@ -64,7 +64,7 @@ function Fanclub() {
 			<div className='info'>
 				<h1>Fanclub for {fanclubData.athlete}</h1>
 				<h3>Manager: {fanclubData.manager}</h3>
-				<button onClick={copyInviteLink} className="button">
+				<button onClick={copyInviteLink} className='invite_link'>
 					Copy Invite Link
 				</button>
 

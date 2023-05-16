@@ -1,19 +1,29 @@
 /* ChatRoom CSS */
 
-.text-white-50 { color: rgba(255, 255, 255, .5); }
-.bg-blue { background-color:#00b5ec; }
-.border-bottom { border-bottom: 1px solid #e5e5e5; }
+.text-white-50 {
+    color: rgba(255, 255, 255, .5); 
+}
+
+.bg-blue { 
+    background-color:#00b5ec; 
+}
+
+.border-bottom { 
+    border-bottom: 1px solid #e5e5e5; 
+}
+
 .box-shadow { 
-  box-shadow: 0 .25rem .75rem rgba(0, 0, 0, .05); 
-  background-color: white;
+  box-shadow: 0 .25rem .75rem rgba(0, 0, 0, .2); 
+  background-color: rgba(255, 255, 255, 0.8); 
   border-radius: 25px;
   padding: 10px;
+  margin: 25px;
 }
 
 .cont {
     padding: 30px;
-    margin: 50px;
-    /* background-color: #fff2e6; */
+    margin: 0 auto;
+    margin-top: 20px;
     background-color:  rgb(29, 66, 138);
     border-radius: 25px;
     color: #333;
@@ -44,13 +54,15 @@
   .chatroom input {
     flex: 1;
     padding: 5px; 
+    margin-top: 13px;
     border: none;
     border-radius: 5px;
     font-size: 16px;
   }
   
   .chatroom button {
-    padding: 10px;
+    padding: 5px;
+    margin: 10px;
     border: none;
     border-radius: 5px;
     background-color: rgb(255, 199, 44); 
@@ -58,5 +70,9 @@
     font-size: 16px;
     font-weight: bold;
     margin-left: 10px;
+  }
+
+  .chat-backdrop {
+    margin: 300px;
   }
    

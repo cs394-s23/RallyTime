@@ -1,4 +1,22 @@
 .card {
     border-style: solid;
     color: black;
+    box-shadow: 0 .25rem .75rem rgba(0, 0, 0, .2); 
+    background-color: rgba(255, 255, 255, 0.8); 
+}
+
+.more-button {
+    padding: 5px;
+    margin: 10px;
+    margin-top: 25px;
+    border: none;
+    border-radius: 5px;
+    background-color: rgb(255, 199, 44); 
+    color: #fff;
+    font-size: 15px;
+    font-weight: bold;
+    text-decoration: none;
+    align-items: center;
+    justify-content: center;
+    display: flex;
 }

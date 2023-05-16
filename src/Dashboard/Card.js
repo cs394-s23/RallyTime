@@ -9,7 +9,7 @@ function Card({ docid, doc }) {
       {/* <p>{docid}</p> */}
       <p>Athlete: {doc.athlete}</p>
       <p>Manager: {doc.manager}</p>
-      <Link to={`/fanclub/${docid}`}>See More</Link>
+      <Link to={`/fanclub/${docid}`} className='more-button'>Enter Club</Link>
     </div>
   )
 }

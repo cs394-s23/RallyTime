@@ -36,6 +36,8 @@ nav {
     font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
     font-size: 30px;
     margin: 15px;
+    color: white;
+    text-decoration: none;
   }
   /* nav ul li a.current {
     font-weight: bold;
