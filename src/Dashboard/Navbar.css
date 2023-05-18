@@ -1,0 +1,45 @@
+/* Navbar CSS */
+
+nav {
+    background-color: rgb(29, 66, 138);
+    color: #fff; 
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    /* padding: 10px; */
+  }
+  
+  nav ul {
+    display: flex;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+  }
+  
+  nav ul li {
+    margin: 0 10px;
+  }
+  
+  nav ul li a {
+    color: white;
+    text-decoration: none;
+    position: relative;
+    font-weight: normal;
+  }
+  
+  nav ul li a:hover {
+    border-bottom: 2px solid rgb(255, 199, 44); /* yellow line */
+    font-weight: normal;
+  }
+  
+  .title {
+    font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+    font-size: 30px;
+    margin: 15px;
+    color: white;
+    text-decoration: none;
+  }
+  /* nav ul li a.current {
+    font-weight: bold;
+  } */
+  

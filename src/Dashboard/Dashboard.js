@@ -3,7 +3,8 @@ import { collection, getDocs } from "firebase/firestore";
 import { db } from '../Firebase';
 import Card from './Card';
 import { useAuth } from '../Firebase';
-import "./Dashboard.css"
+import "./Dashboard.css";
+import Navbar from './Navbar';
 
 function Dashboard() {
   const [fanclubs, setFanclubs] = useState([]);
@@ -41,8 +42,11 @@ function Dashboard() {
   }, [user, fanclubs]);
 
   return (
+    <>
+    <Navbar />
+    <h1>Dashboard</h1>
     <div className='container'>
-      <h1>Dashboard</h1>
+      <h2>Your Clubs</h2>
       <div className='fanclub'>
 
       {filteredFanclubs.map((fanclub) => (
@@ -50,6 +54,7 @@ function Dashboard() {
       ))}
       </div>
     </div>
+    </>
   );
 }
 

@@ -1,13 +1,62 @@
-.fanclub{
-    display: flex;
-    flex-direction: row;
-    align-content: flex-start;
-    height: auto;
-    width: 75%;
-}
+/* Dashboard CSS */
 
-.fanclub > * {
-    margin: 20px;
-    height: 200px;
-    width: 200px;
-}
+.container {
+    padding: 30px;
+    margin: 50px;
+    /* background-color: #fff2e6; */
+    background-color:  rgb(29, 66, 138);
+    border-radius: 25px;
+    color: #333;
+    width: 600px;
+  }
+
+  h2 {
+    color: white;
+  }
+  
+  
+  h1 {
+    font-size: 32px;
+    margin-bottom: 10px;
+    color: rgb(29, 66, 138);
+  }
+  
+  .fanclub {
+    display: flex;
+    flex-wrap: wrap;
+    margin-top: 20px;
+  }
+  
+  .card {
+    background-color: #fff;
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.3);
+    padding: 10px;
+    margin-right: 20px;
+    margin-bottom: 20px;
+    width: calc(33.33333% - 20px); /* responsive 3-column layout */
+    max-width: 300px;
+    border-radius: 5px;
+    overflow: hidden;
+  }
+  
+  .card h2 {
+    font-size: 24px;
+    margin-bottom: 10px;
+    color: rgb(29, 66, 138);
+  }
+  
+  .card p {
+    margin-bottom: 10px;
+  }
+  
+  .card button {
+    background-color: rgb(255, 199, 44);
+    border: none;
+    color: #fff;
+    font-size: 16px;
+    font-weight: bold;
+    padding: 10px;
+    border-radius: 5px;
+    cursor: pointer;
+  }
+  
