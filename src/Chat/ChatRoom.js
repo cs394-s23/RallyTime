@@ -3,7 +3,7 @@ import { db } from '../Firebase';
 import { doc, updateDoc } from "firebase/firestore";
 import "./ChatRoom.css";
 import { useAuth } from '../Firebase';
-
+import LikeButton from './Like.jsx';
 
 function ChatRoom({ docid, data }) {
   const [messages, setMessages] = useState([])
@@ -86,8 +86,9 @@ function ChatRoom({ docid, data }) {
                         <div class="border-bottom">
                           <img src="https://bootdey.com/img/Content/avatar/avatar7.png" alt="" class="mr-2 rounded" width="32" height="32"/>
                           <strong class="d-block text-gray-dark">You: </strong> <span>{message.content}</span>
-                          <button onClick={() => handleLike(message)}>Like</button>
-                          {/* <span>{message.likes.length}</span> */}
+                          <button onClick={() => handleLike(message)} className='heart'>Like</button>
+                          <LikeButton likes={message.likes} />
+                          <div>Likes: {message.likes ? message.likes.length : 0}</div>
                         </div>
                     ))
                   }
@@ -105,6 +106,7 @@ function ChatRoom({ docid, data }) {
           <button type="submit" disabled={!formValue} className='send-text'>
             Submit
           </button>
+  
         </form>
       </div>
 
