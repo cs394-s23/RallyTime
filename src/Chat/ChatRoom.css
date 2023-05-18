@@ -75,4 +75,84 @@
   .chat-backdrop {
     margin: 300px;
   }
-   
+
+
+/* .heart {
+    position: relative;
+    width: 100px;
+    height: 90px;
+}
+
+.heart::before,
+.heart::after {
+    position: absolute;
+    content: "";
+    left: 50px;
+    top: 0;
+    width: 52px;
+    height: 80px;
+    border-radius: 50px 50px 0 0;
+    background: red;
+}
+
+.heart::before {
+    left: 50px;
+    transform: rotate(-45deg);
+    transform-origin: 0 100%;
+}
+
+.heart::after {
+    left: 0;
+    transform: rotate(45deg);
+    transform-origin: 100% 100%;
+}
+
+.outline-heart::before,
+.outline-heart::after {
+    background: transparent;
+    box-shadow: inset -2px -2px 0 2px red;
+} */
+
+
+.heart {
+  background-color: transparent;
+  display: inline-block;
+  height: 30px;
+  margin: 0 10px;
+  position: relative;
+  top: 0;
+  transform: rotate(-45deg);
+  width: 30px;
+  border: 2px solid red;
+}
+
+.heart:before,
+.heart:after {
+  content: "";
+  background-color: transparent;
+  border-radius: 50%;
+  height: 30px;
+  position: absolute;
+  width: 30px;
+  border: 2px solid red;
+}
+
+.heart:before {
+  top: -15px;
+  left: 0;
+}
+
+.heart:after {
+  left: 15px;
+  top: 0;
+}
+
+.heart.filled,
+.heart.filled:before,
+.heart.filled:after {
+  background-color: red;
+  border: none;
+}
+
+
+
