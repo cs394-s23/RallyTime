@@ -1,5 +1,6 @@
 import { useEffect } from "react"
 import { handleGoogleSignIn } from "./Firebase"
+import './Landing.css';
 
 const LandingPage = () => {
 
