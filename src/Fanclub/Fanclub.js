@@ -1,17 +1,18 @@
 import React, { useEffect, useState } from 'react'
 import { useParams } from 'react-router-dom';
-import { doc, getDoc, updateDoc } from "firebase/firestore";
+import { doc, getDoc, updateDoc, collection, getDocs } from "firebase/firestore";
 import { db, useAuth } from '../Firebase';
 import ChatRoom from '../Chat/ChatRoom';
 import "./Fanclub.css";
 import Navbar from '../Dashboard/Navbar';
-
+import DM from '../DM/DM';
 
 
 function Fanclub() {
 
 	const { docid } = useParams();
 	const [fanclubData, setFanclubData] = useState({})
+	const [chats, setChats] = useState([])
 	const user = useAuth();
 
 	const loadFanclub = async () => {
@@ -25,13 +26,36 @@ function Fanclub() {
 		}			
 	}
 
+	const loadDMs = async () => {
+		if (!!user) {
+			const userID = await user.uid
+			const docRef = doc(db, 'fanclub', docid);
+			const docSnapshot = await getDoc(docRef);
+			const chatDocs = [];
+			const directMessageIDs = docSnapshot.data().direct_messages
+			directMessageIDs.forEach(async (directMessageID) => {
+				const chatRef = doc(db, 'chat', directMessageID);
+				const chatSnapshot = await getDoc(chatRef);
+				const userSet = new Set(chatSnapshot.data().members)
+				if (userSet.has(userID))
+					chatDocs.push(chatSnapshot);
+			});
+			setChats(chatDocs);
+			chats.forEach(chat => {
+				console.log("Chats=",chat.data())
+			})
+			
+		}
+
+	}
+
 	useEffect(() => {
 		const checkInClub = async () => {
 			if (!!fanclubData.members && !!user && fanclubData.members.size !== 0) {
 				const userID = await user.uid
 				const fanclubMemberIDs = await new Set(await fanclubData.members)
-				console.log(fanclubMemberIDs)
-				console.log("mine=",userID)
+				// console.log(fanclubMemberIDs)
+				// console.log("mine=",userID)
 				if (!fanclubMemberIDs.has(userID)) {
 					console.log("adding you to fanclub")
 					const newMembers = [...fanclubData.members, userID];
@@ -41,6 +65,7 @@ function Fanclub() {
 			}
 		}
 		checkInClub()
+		loadDMs()
 	}, [user, fanclubData])
 
 	useEffect(() => {	
@@ -70,6 +95,11 @@ function Fanclub() {
 
 			</div>
 			<ChatRoom docid={docid} data={fanclubData} />
+			{
+				chats.length > 0 ? chats.map((chat) => (
+					<DM docid={chat.id} data={chat.data()}/>
+				)) : <p>DM Not Loaded</p>
+			}
 		</div>
 	)
 	
