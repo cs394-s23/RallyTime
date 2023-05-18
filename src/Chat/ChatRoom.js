@@ -8,6 +8,7 @@ import { useAuth } from '../Firebase';
 function ChatRoom({ docid, data }) {
   const [messages, setMessages] = useState([])
   const [formValue, setFormValue] = useState('');
+  const [likes, setLike] = useState([]);
   const user = useAuth();
 
   const loadMessages = () => {
@@ -22,19 +23,51 @@ function ChatRoom({ docid, data }) {
     const newMessage = {
       userID: userID,
       userName: userName,
-      content: formValue
+      content: formValue,
+      likes: []
     };
 
     setFormValue("");
+
+   
   
     const newMessages = [...messages, newMessage];
     setMessages(newMessages);
+
+    // const newLikes = { ...likes, [newMessages.length - 1]: [] };
+    // setLikes(newLikes);
+
   
     const docRef = doc(db, "fanclub", docid);
 
+
     await updateDoc(docRef, { group_messages: newMessages });
   };
-  
+
+  const handleLike = async (message) => {
+    const userID = await user.uid;
+    const index = messages.indexOf(message);
+    const docRef = doc(db, "fanclub", docid);
+    // const likedMessage = messages[index]
+
+
+    const likesSet = new Set(message.likes); // Convert likes array to a Set
+
+    if (likesSet.has(userID)) {
+      likesSet.delete(userID); // Unliking the message
+    } else {
+      likesSet.add(userID); // Liking the message
+    }
+    const newLikesArray = Array.from(likesSet); // Convert the Set back to an array
+    const newMessage = { ...message, likes: newLikesArray };
+
+    const newMessages = [...messages.slice(0, index), newMessage, ...messages.slice(index + 1)];
+    setMessages(newMessages);
+    setLike(newLikesArray); // Update the likes state with the new array
+
+    await updateDoc(docRef, { group_messages: newMessages });
+  }
+
 
   useEffect(() => {
     loadMessages()
@@ -53,6 +86,8 @@ function ChatRoom({ docid, data }) {
                         <div class="border-bottom">
                           <img src="https://bootdey.com/img/Content/avatar/avatar7.png" alt="" class="mr-2 rounded" width="32" height="32"/>
                           <strong class="d-block text-gray-dark">You: </strong> <span>{message.content}</span>
+                          <button onClick={() => handleLike(message)}>Like</button>
+                          {/* <span>{message.likes.length}</span> */}
                         </div>
                     ))
                   }
