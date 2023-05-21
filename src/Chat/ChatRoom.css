@@ -77,7 +77,7 @@
   }
 
 
-/* .heart {
+/* /* .heart {
     position: relative;
     width: 100px;
     height: 90px;
@@ -115,44 +115,18 @@
 
 
 .heart {
-  background-color: transparent;
-  display: inline-block;
-  height: 30px;
-  margin: 0 10px;
-  position: relative;
-  top: 0;
-  transform: rotate(-45deg);
-  width: 30px;
-  border: 2px solid red;
-}
-
-.heart:before,
-.heart:after {
-  content: "";
-  background-color: transparent;
-  border-radius: 50%;
-  height: 30px;
-  position: absolute;
-  width: 30px;
-  border: 2px solid red;
-}
-
-.heart:before {
-  top: -15px;
-  left: 0;
-}
-
-.heart:after {
-  left: 15px;
-  top: 0;
-}
-
-.heart.filled,
-.heart.filled:before,
-.heart.filled:after {
-  background-color: red;
+  color: black; /* Default color for the heart icon */
   border: none;
+  background: none;
+
 }
+
+.heart.clicked {
+  color: red; /* Color for the filled heart icon when clicked */
+  outline:none
+}
+
+
 
 
 

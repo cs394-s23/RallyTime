@@ -5,6 +5,13 @@ import "./ChatRoom.css";
 import { useAuth } from '../Firebase';
 import LikeButton from './Like.jsx';
 
+
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faHeart as filledHeart } from '@fortawesome/free-solid-svg-icons';
+import { faHeart as emptyHeart } from '@fortawesome/free-regular-svg-icons';
+
+
+
 function ChatRoom({ docid, data }) {
   const [messages, setMessages] = useState([])
   const [formValue, setFormValue] = useState('');
@@ -65,6 +72,12 @@ function ChatRoom({ docid, data }) {
     setMessages(newMessages);
     setLike(newLikesArray); // Update the likes state with the new array
 
+    // Update the class of the heart button
+    const heartButton = document.getElementById(`heart-button-${index}`);
+    if (heartButton) {
+      heartButton.classList.toggle('clicked');
+    }
+
     await updateDoc(docRef, { group_messages: newMessages });
   }
 
@@ -80,14 +93,24 @@ function ChatRoom({ docid, data }) {
             <div>
               <span className='chat-backdrop'>
                   {
-                    messages.map((message) => (
+                    messages.map((message, index) => (
                       message.userID !== user.uid ? 
-                        <div class="border-bottom"><strong class="d-block text-gray-dark">{message.userName}: </strong> <span>{message.content}</span></div> : 
                         <div class="border-bottom">
-                          <img src="https://bootdey.com/img/Content/avatar/avatar7.png" alt="" class="mr-2 rounded" width="32" height="32"/>
-                          <strong class="d-block text-gray-dark">You: </strong> <span>{message.content}</span>
-                          <button onClick={() => handleLike(message)} className='heart'>Like</button>
-                          <LikeButton likes={message.likes} />
+                          <strong class="d-block text-gray-dark">{message.userName}: </strong>
+                          <span>{message.content}</span>
+                        </div> :
+                        <div class="border-bottom">
+                          <img src="https://bootdey.com/img/Content/avatar/avatar7.png" alt="" class="mr-2 rounded" width="32" height="32" />
+                          <strong class="d-block text-gray-dark">You: </strong>
+                          <span>{message.content}</span>
+                          <button
+                            id={`heart-button-${index}`} // Unique ID for each heart button
+                            onClick={() => handleLike(message)}
+                            className={`heart ${message.likes.includes(user.uid) ? 'clicked' : ''}`}
+                            
+                          >
+                            <FontAwesomeIcon icon={message.likes.includes(user.uid) ? filledHeart : emptyHeart} />
+                          </button>
                           <div>Likes: {message.likes ? message.likes.length : 0}</div>
                         </div>
                     ))
