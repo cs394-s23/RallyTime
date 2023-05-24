@@ -88,20 +88,29 @@ function ChatRoom({ docid, data }) {
 
   return (
     <div className='cont'>
-        <div class="box-shadow">
+        <div className="box-shadow">
           <h1>Message Board</h1> <hr/>
             <div>
               <span className='chat-backdrop'>
                   {
                     messages.map((message, index) => (
                       message.userID !== user.uid ? 
-                        <div class="border-bottom">
-                          <strong class="d-block text-gray-dark">{message.userName}: </strong>
+                        <div className="border-bottom">
+                          <strong className="d-block text-gray-dark">{message.userName}: </strong>
                           <span>{message.content}</span>
+                          <button
+                            id={`heart-button-${index}`} // Unique ID for each heart button
+                            onClick={() => handleLike(message)}
+                            className={`heart ${message.likes.includes(user.uid) ? 'clicked' : ''}`}
+                            
+                          >
+                            <FontAwesomeIcon icon={message.likes.includes(user.uid) ? filledHeart : emptyHeart} />
+                          </button>
+                          <div>Likes: {message.likes ? message.likes.length : 0}</div>
                         </div> :
-                        <div class="border-bottom">
-                          <img src="https://bootdey.com/img/Content/avatar/avatar7.png" alt="" class="mr-2 rounded" width="32" height="32" />
-                          <strong class="d-block text-gray-dark">You: </strong>
+                        <div className="border-bottom">
+                          <img src="https://bootdey.com/img/Content/avatar/avatar7.png" alt="" className="mr-2 rounded" width="32" height="32" />
+                          <strong className="d-block text-gray-dark">You: </strong>
                           <span>{message.content}</span>
                           <button
                             id={`heart-button-${index}`} // Unique ID for each heart button
