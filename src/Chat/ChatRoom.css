@@ -75,4 +75,58 @@
   .chat-backdrop {
     margin: 300px;
   }
-   
+
+
+/* /* .heart {
+    position: relative;
+    width: 100px;
+    height: 90px;
+}
+
+.heart::before,
+.heart::after {
+    position: absolute;
+    content: "";
+    left: 50px;
+    top: 0;
+    width: 52px;
+    height: 80px;
+    border-radius: 50px 50px 0 0;
+    background: red;
+}
+
+.heart::before {
+    left: 50px;
+    transform: rotate(-45deg);
+    transform-origin: 0 100%;
+}
+
+.heart::after {
+    left: 0;
+    transform: rotate(45deg);
+    transform-origin: 100% 100%;
+}
+
+.outline-heart::before,
+.outline-heart::after {
+    background: transparent;
+    box-shadow: inset -2px -2px 0 2px red;
+} */
+
+
+.heart {
+  color: black; /* Default color for the heart icon */
+  border: none;
+  background: none;
+
+}
+
+.heart.clicked {
+  color: red; /* Color for the filled heart icon when clicked */
+  outline:none
+}
+
+
+
+
+

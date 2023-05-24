@@ -3,11 +3,19 @@ import { db } from '../Firebase';
 import { doc, updateDoc } from "firebase/firestore";
 import "./ChatRoom.css";
 import { useAuth } from '../Firebase';
+import LikeButton from './Like.jsx';
+
+
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faHeart as filledHeart } from '@fortawesome/free-solid-svg-icons';
+import { faHeart as emptyHeart } from '@fortawesome/free-regular-svg-icons';
+
 
 
 function ChatRoom({ docid, data }) {
   const [messages, setMessages] = useState([])
   const [formValue, setFormValue] = useState('');
+  const [likes, setLike] = useState([]);
   const user = useAuth();
 
   const loadMessages = () => {
@@ -22,19 +30,57 @@ function ChatRoom({ docid, data }) {
     const newMessage = {
       userID: userID,
       userName: userName,
-      content: formValue
+      content: formValue,
+      likes: []
     };
 
     setFormValue("");
+
+   
   
     const newMessages = [...messages, newMessage];
     setMessages(newMessages);
+
+    // const newLikes = { ...likes, [newMessages.length - 1]: [] };
+    // setLikes(newLikes);
+
   
     const docRef = doc(db, "fanclub", docid);
 
+
     await updateDoc(docRef, { group_messages: newMessages });
   };
-  
+
+  const handleLike = async (message) => {
+    const userID = await user.uid;
+    const index = messages.indexOf(message);
+    const docRef = doc(db, "fanclub", docid);
+    // const likedMessage = messages[index]
+
+
+    const likesSet = new Set(message.likes); // Convert likes array to a Set
+
+    if (likesSet.has(userID)) {
+      likesSet.delete(userID); // Unliking the message
+    } else {
+      likesSet.add(userID); // Liking the message
+    }
+    const newLikesArray = Array.from(likesSet); // Convert the Set back to an array
+    const newMessage = { ...message, likes: newLikesArray };
+
+    const newMessages = [...messages.slice(0, index), newMessage, ...messages.slice(index + 1)];
+    setMessages(newMessages);
+    setLike(newLikesArray); // Update the likes state with the new array
+
+    // Update the class of the heart button
+    const heartButton = document.getElementById(`heart-button-${index}`);
+    if (heartButton) {
+      heartButton.classList.toggle('clicked');
+    }
+
+    await updateDoc(docRef, { group_messages: newMessages });
+  }
+
 
   useEffect(() => {
     loadMessages()
@@ -47,12 +93,25 @@ function ChatRoom({ docid, data }) {
             <div>
               <span className='chat-backdrop'>
                   {
-                    messages.map((message) => (
+                    messages.map((message, index) => (
                       message.userID !== user.uid ? 
-                        <div class="border-bottom"><strong class="d-block text-gray-dark">{message.userName}: </strong> <span>{message.content}</span></div> : 
                         <div class="border-bottom">
-                          <img src="https://bootdey.com/img/Content/avatar/avatar7.png" alt="" class="mr-2 rounded" width="32" height="32"/>
-                          <strong class="d-block text-gray-dark">You: </strong> <span>{message.content}</span>
+                          <strong class="d-block text-gray-dark">{message.userName}: </strong>
+                          <span>{message.content}</span>
+                        </div> :
+                        <div class="border-bottom">
+                          <img src="https://bootdey.com/img/Content/avatar/avatar7.png" alt="" class="mr-2 rounded" width="32" height="32" />
+                          <strong class="d-block text-gray-dark">You: </strong>
+                          <span>{message.content}</span>
+                          <button
+                            id={`heart-button-${index}`} // Unique ID for each heart button
+                            onClick={() => handleLike(message)}
+                            className={`heart ${message.likes.includes(user.uid) ? 'clicked' : ''}`}
+                            
+                          >
+                            <FontAwesomeIcon icon={message.likes.includes(user.uid) ? filledHeart : emptyHeart} />
+                          </button>
+                          <div>Likes: {message.likes ? message.likes.length : 0}</div>
                         </div>
                     ))
                   }
@@ -70,6 +129,7 @@ function ChatRoom({ docid, data }) {
           <button type="submit" disabled={!formValue} className='send-text'>
             Submit
           </button>
+  
         </form>
       </div>
 
