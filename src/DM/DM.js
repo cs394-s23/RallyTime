@@ -41,17 +41,17 @@ function DM({ docid, data }) {
   if (!!user) {
     return (
         <div className='cont'>
-            <div class="box-shadow">
+            <div className="box-shadow">
               <h1>DM</h1> <hr/>
                 <div>
                   <span className='chat-backdrop'>
                       {
                         messages.map((message) => (
                           message.userID !== user.uid ? 
-                            <div class="border-bottom"><strong class="d-block text-gray-dark">{message.userName}: </strong> <span>{message.content}</span></div> : 
-                            <div class="border-bottom">
-                              <img src="https://bootdey.com/img/Content/avatar/avatar7.png" alt="" class="mr-2 rounded" width="32" height="32"/>
-                              <strong class="d-block text-gray-dark">You: </strong> <span>{message.content}</span>
+                            <div className="border-bottom"><strong className="d-block text-gray-dark">{message.userName}: </strong> <span>{message.content}</span></div> : 
+                            <div className="border-bottom">
+                              <img src="https://bootdey.com/img/Content/avatar/avatar7.png" alt="" className="mr-2 rounded" width="32" height="32"/>
+                              <strong className="d-block text-gray-dark">You: </strong> <span>{message.content}</span>
                             </div>
                         ))
                       }
