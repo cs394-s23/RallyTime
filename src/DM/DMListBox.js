@@ -1,10 +1,10 @@
-import React from 'react'
-import { useState } from 'react';
-import DM from "./DM.js";
+import React, { useState } from 'react';
+import DM from './DM.js';
+import './card.css';
 
 function DMListBox({ docid, data }) {
-
   const [showModal, setShowModal] = useState(false);
+
   const openModal = () => {
     setShowModal(true);
   };
@@ -15,16 +15,19 @@ function DMListBox({ docid, data }) {
 
   return (
     <div>
-    <button onClick={openModal}>{docid}</button>
-    {showModal && (
-        <DM
-          docid={docid}
-          data={data}
-          onClose={closeModal}
-        />
+      <button onClick={openModal}>{docid}</button>
+      {showModal && (
+        <div className="modal">
+          <div className="modal-content">
+            <span className="close" onClick={closeModal}>
+              &times;
+            </span>
+            <DM docid={docid} data={data} />
+          </div>
+        </div>
       )}
     </div>
-  )
+  );
 }
 
 export default DMListBox;
