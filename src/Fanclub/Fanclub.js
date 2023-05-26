@@ -6,6 +6,7 @@ import ChatRoom from '../Chat/ChatRoom';
 import "./Fanclub.css";
 import Navbar from '../Dashboard/Navbar';
 import DM from '../DM/DM';
+import DMListBox from '../DM/DMListBox';
 
 
 function Fanclub() {
@@ -25,29 +26,6 @@ function Fanclub() {
 			console.log('No such document!');
 		}			
 	}
-
-	// const loadDMs = async () => {
-	// 	if (!!user) {
-	// 		const userID = await user.uid
-	// 		const docRef = doc(db, 'fanclub', docid);
-	// 		const docSnapshot = await getDoc(docRef);
-	// 		const chatDocs = [];
-	// 		const directMessageIDs = docSnapshot.data().direct_messages
-	// 		directMessageIDs.forEach(async (directMessageID) => {
-	// 			const chatRef = doc(db, 'chat', directMessageID);
-	// 			const chatSnapshot = await getDoc(chatRef);
-	// 			const userSet = new Set(chatSnapshot.data().members)
-	// 			if (userSet.has(userID))
-	// 				chatDocs.push(chatSnapshot);
-	// 		});
-	// 		setChats(chatDocs);
-	// 		// chats.forEach(chat => {
-	// 		// 	console.log("Chats=",chat.data())
-	// 		// })
-			
-	// 	}
-
-	// }
 
 	const loadDMs = async () => {
 		if (!!user) {
@@ -118,14 +96,18 @@ function Fanclub() {
 				<button onClick={copyInviteLink} className='invite_link'>
 					Copy Invite Link
 				</button>
-
 			</div>
 			<ChatRoom docid={docid} data={fanclubData} />
 			{
 				chats.length > 0 ? chats.map((chat) => (
-					<DM docid={chat.id} data={chat.data()}/>
+					<DMListBox docid={chat.id} data={chat.data()}/>
 				)) : <p>DM Not Loaded</p>
 			}
+			{/* {
+				chats.length > 0 ? chats.map((chat) => (
+					<DM docid={chat.id} data={chat.data()}/>
+				)) : <p>DM Not Loaded</p>
+			} */}
 		</div>
 	)
 	
