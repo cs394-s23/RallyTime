@@ -7,6 +7,8 @@ import "./Fanclub.css";
 import Navbar from '../Dashboard/Navbar';
 import DM from '../DM/DM';
 import DMListBox from '../DM/DMListBox';
+import DMForm from '../DM/DMForm';
+
 function Fanclub() {
 	const { docid } = useParams();
 	const [fanclubData, setFanclubData] = useState({})
@@ -117,6 +119,7 @@ function Fanclub() {
 					</div>
 					<ChatRoom docid={docid} data={fanclubData} />
 				</div>
+				<DMForm fanclubID={docid} fanclubData={fanclubData} />
 			</div>
 		</div>
 	)
