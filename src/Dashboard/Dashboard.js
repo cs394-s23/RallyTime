@@ -25,7 +25,11 @@ function Dashboard() {
     const activeFanclubs = [];
     fanclubs.forEach((fanclubDoc) => {
       const fanclubData = fanclubDoc.data();
-      const fanclubMemberIDs = new Set(fanclubData.members);
+      const fanclubMemberIDs = new Set()
+      const fanclubMembers = fanclubData.members
+      fanclubMembers.forEach(member => {
+        fanclubMemberIDs.add(member.uid)
+      })
       if (fanclubMemberIDs.has(userID)) {
         activeFanclubs.push(fanclubDoc);
       }
