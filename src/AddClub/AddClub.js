@@ -10,7 +10,13 @@ function AddClub() {
     const user = useAuth();
 
     async function submitForm(data) {
-        data.members.push(await user.uid)
+        const uid = await user.uid
+        const displayName = await user.displayName
+        const currUser = {
+            uid: uid,
+            displayName: displayName
+        }
+        data.members.push(currUser)
         let docRef = await addDoc(collection(db, 'fanclub'), data);
         return docRef.id;
     };

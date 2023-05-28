@@ -1,29 +1,64 @@
-import {useFormik} from "formik"
+import { useFormik } from "formik"
 import { db, storage, fbapp } from "../Firebase.js"
 import { addDoc, collection } from "firebase/firestore"
 import Form from 'react-bootstrap/Form';
 import { useAuth } from '../Firebase';
 import Navbar from "../Dashboard/Navbar.js";
-import "./AddClub.css"
+import { useEffect, useState } from "react";
+import { getAuth, getUsers } from "firebase/auth";
 
-function DMForm() {
+function DMForm({ fanclubData }) {
+    
+    const [users, setUsers] = useState([])
     const user = useAuth();
 
     async function submitForm(data) {
-        data.members.push(await user.uid)
-        let docRef = await addDoc(collection(db, 'fanclub'), data);
+        const uid = await user.uid
+        const displayName = await user.displayName
+        const currUser = {
+            uid: uid,
+            displayName: displayName
+        }
+        data.members.push(currUser)
+        let docRef = await addDoc(collection(db, 'chat'), data);
         return docRef.id;
     };
+      
+    const loadUsers = () => {
+        // console.log(fanclubData)
+        // Check if fanclubData.members exists and is an array
+        if (fanclubData.members && Array.isArray(fanclubData.members)) {
+            const userData = fanclubData.members.map((member) => {
+                return { uid: member };
+            });
+            getAuth()
+                .getUsers(userData)
+                    .then(() => console.log('hi'))
+                    .then((getUsersResult) => {
+                        console.log('Successfully fetched user data:');
+                        console.log(getUsersResult)
+        
+                        // console.log('Unable to find users corresponding to these identifiers:');
+                        // getUsersResult.notFound.forEach((userIdentifier) => {
+                        //     console.log(userIdentifier);
+                        // });
+                    })
+                    .catch((error) => {
+                        console.log('Error fetching user data:', error);
+                    });
+            }
+    };
+    
+
+    useEffect(() => {
+        loadUsers()
+    }, [])
     
     const ClubForm = () => {
         const formik = useFormik({
             initialValues: {
-                athlete: '',
-                manager:'',
-                description:'',
-                group_messages: [],
-                direct_messages: [],
-                members: []
+                members: [],
+                messages: []
             },
             onSubmit: async (values) => {
                 await submitForm(values);
@@ -32,33 +67,15 @@ function DMForm() {
 
         return (
             <div id="wholeform">
-                <h1>Create a Fanclub!</h1>
-                <Form onSubmit={formik.handleSubmit}>
-                    <Form.Label>Athlete</Form.Label>
+                <h1>Create a New Chat!</h1>
+                <Form onSubmit={formik.handleSubmit}>        
+                    <Form.Label>First Message</Form.Label>
                     <Form.Control
-                        id="athlete"
-                        name="athlete"
-                        type="text"
-                        onChange={formik.handleChange}
-                        value={formik.values.athlete}
-                    />
-
-                    <Form.Label>Manager</Form.Label>
-                    <Form.Control
-                        id='manager'
-                        name='manager'
+                        id='first-message'
+                        name='first-message'
                         type='text'
                         onChange={formik.handleChange}
-                        value={formik.values.manager}
-                    />          
-
-                    <Form.Label>Description</Form.Label>
-                    <Form.Control
-                        id='description'
-                        name='description'
-                        type='text'
-                        onChange={formik.handleChange}
-                        value={formik.values.description}
+                        value={formik.values.messages}
                     />
 
                     
