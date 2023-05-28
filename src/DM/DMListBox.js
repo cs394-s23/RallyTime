@@ -22,7 +22,12 @@ function DMListBox({ docid, data }) {
             <span className="close" onClick={closeModal}>
               &times;
             </span>
+
             <DM docid={docid} data={data} />
+
+            
+
+             
           </div>
         </div>
       )}

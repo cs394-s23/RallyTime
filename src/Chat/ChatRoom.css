@@ -21,97 +21,60 @@
 }
 
 .cont {
-    padding: 30px;
-    margin: 0 auto;
-    margin-top: 20px;
-    background-color:  rgb(29, 66, 138);
-    border-radius: 25px;
-    color: #333;
-    width: 600px;
-  }
+  padding: 30px;
+  margin: 0 auto;
+  width: 70%;
+  margin-top: 80px;
+  background-color: rgb(29, 66, 138);
+  border-radius: 25px;
+  color: #333;
+}
   
-   .chatroom-container {
-    margin-top: 20px;
-    border: 2px solid rgb(255, 199, 44); 
-    padding: 10px;
-  }
-  
-  .chatroom {
-    margin-top: 10px;
-  }
-  
-  .chatroom p {
-    margin: 10px 0;
-  }
-  
-  .chatroom form {
-    padding:10px;
-    display: flex;
-    flex-direction: row;
-    margin-top: 10px;
-  }
-  
-  .chatroom input {
-    flex: 1;
-    padding: 5px; 
-    margin-top: 13px;
-    border: none;
-    border-radius: 5px;
-    font-size: 16px;
-  }
-  
-  .chatroom button {
-    padding: 5px;
-    margin: 10px;
-    border: none;
-    border-radius: 5px;
-    background-color: rgb(255, 199, 44); 
-    color: #fff;
-    font-size: 16px;
-    font-weight: bold;
-    margin-left: 10px;
-  }
-
-  .chat-backdrop {
-    margin: 300px;
-  }
-
-
-/* /* .heart {
-    position: relative;
-    width: 100px;
-    height: 90px;
+.chatroom-container {
+margin-top: 20px;
+border: 2px solid rgb(255, 199, 44); 
+padding: 10px;
 }
 
-.heart::before,
-.heart::after {
-    position: absolute;
-    content: "";
-    left: 50px;
-    top: 0;
-    width: 52px;
-    height: 80px;
-    border-radius: 50px 50px 0 0;
-    background: red;
+.chatroom {
+  margin-top: 10px;
 }
 
-.heart::before {
-    left: 50px;
-    transform: rotate(-45deg);
-    transform-origin: 0 100%;
+.chatroom p {
+  margin: 10px 0;
 }
 
-.heart::after {
-    left: 0;
-    transform: rotate(45deg);
-    transform-origin: 100% 100%;
+.chatroom form {
+  padding:10px;
+  display: flex;
+  flex-direction: row;
+  margin-top: 10px;
 }
 
-.outline-heart::before,
-.outline-heart::after {
-    background: transparent;
-    box-shadow: inset -2px -2px 0 2px red;
-} */
+.chatroom input {
+  flex: 1;
+  padding: 5px; 
+  margin-top: 13px;
+  border: none;
+  border-radius: 5px;
+  font-size: 16px;
+}
+
+.chatroom button {
+  padding: 5px;
+  margin: 10px;
+  border: none;
+  border-radius: 5px;
+  background-color: rgb(255, 199, 44); 
+  color: #fff;
+  font-size: 16px;
+  font-weight: bold;
+  margin-left: 10px;
+}
+
+.chat-backdrop {
+  margin: 300px;
+}
 
 
 .heart {
@@ -126,7 +89,12 @@
   outline:none
 }
 
+.main-container {
+  display: flex;
+}
 
 
-
-
+.group-members {
+  color: black;
+  padding-right: 10px;
+}

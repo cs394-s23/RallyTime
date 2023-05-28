@@ -3,6 +3,9 @@ import { db } from '../Firebase';
 import { doc, updateDoc } from "firebase/firestore";
 import { useAuth } from '../Firebase';
 
+import './DMListBox.css';
+
+
 
 function DM({ docid, data }) {
   const [messages, setMessages] = useState([])
@@ -42,7 +45,17 @@ function DM({ docid, data }) {
     return (
         <div className='cont'>
             <div className="box-shadow">
+
               <h1>DM</h1> <hr/>
+              <div className="members">
+                <h2 className='group-members'>Members:  </h2>
+                <div className="member-list">
+                  
+                </div>
+                <p>{data.members.map((member) => member.displayName).join(", ")}</p>
+              </div>
+
+
                 <div>
                   <span className='chat-backdrop'>
                       {

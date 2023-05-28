@@ -87,62 +87,61 @@ function ChatRoom({ docid, data }) {
   }, [data])
 
   return (
-    <div className='cont'>
-        <div className="box-shadow">
-          <h1>Message Board</h1> <hr/>
-            <div>
-              <span className='chat-backdrop'>
-                  {
-                    messages.map((message, index) => (
-                      message.userID !== user.uid ? 
-                        <div className="border-bottom">
-                          <strong className="d-block text-gray-dark">{message.userName}: </strong>
-                          <span>{message.content}</span>
-                          <button
-                            id={`heart-button-${index}`} // Unique ID for each heart button
-                            onClick={() => handleLike(message)}
-                            className={`heart ${message.likes.includes(user.uid) ? 'clicked' : ''}`}
-                            
-                          >
-                            <FontAwesomeIcon icon={message.likes.includes(user.uid) ? filledHeart : emptyHeart} />
-                          </button>
-                          <div>Likes: {message.likes ? message.likes.length : 0}</div>
-                        </div> :
-                        <div className="border-bottom">
-                          <img src="https://bootdey.com/img/Content/avatar/avatar7.png" alt="" className="mr-2 rounded" width="32" height="32" />
-                          <strong className="d-block text-gray-dark">You: </strong>
-                          <span>{message.content}</span>
-                          <button
-                            id={`heart-button-${index}`} // Unique ID for each heart button
-                            onClick={() => handleLike(message)}
-                            className={`heart ${message.likes.includes(user.uid) ? 'clicked' : ''}`}
-                            
-                          >
-                            <FontAwesomeIcon icon={message.likes.includes(user.uid) ? filledHeart : emptyHeart} />
-                          </button>
-                          <div>Likes: {message.likes ? message.likes.length : 0}</div>
-                        </div>
-                    ))
-                  }
-              </span>
-            </div>
+      <div className='cont'>
+      <div className="box-shadow">
+            <h1>Message Board</h1> <hr/>
+              <div>
+                <span className='chat-backdrop'>
+                    {
+                      messages.map((message, index) => (
+                        message.userID !== user.uid ? 
+                          <div className="border-bottom">
+                            <strong className="d-block text-gray-dark">{message.userName}: </strong>
+                            <span>{message.content}</span>
+                            <button
+                              id={`heart-button-${index}`} // Unique ID for each heart button
+                              onClick={() => handleLike(message)}
+                              className={`heart ${message.likes.includes(user.uid) ? 'clicked' : ''}`}
+                              
+                            >
+                              <FontAwesomeIcon icon={message.likes.includes(user.uid) ? filledHeart : emptyHeart} />
+                            </button>
+                            <div>Likes: {message.likes ? message.likes.length : 0}</div>
+                          </div> :
+                          <div className="border-bottom">
+                            <img src="https://bootdey.com/img/Content/avatar/avatar7.png" alt="" className="mr-2 rounded" width="32" height="32" />
+                            <strong className="d-block text-gray-dark">You: </strong>
+                            <span>{message.content}</span>
+                            <button
+                              id={`heart-button-${index}`} // Unique ID for each heart button
+                              onClick={() => handleLike(message)}
+                              className={`heart ${message.likes.includes(user.uid) ? 'clicked' : ''}`}
+                              
+                            >
+                              <FontAwesomeIcon icon={message.likes.includes(user.uid) ? filledHeart : emptyHeart} />
+                            </button>
+                            <div>Likes: {message.likes ? message.likes.length : 0}</div>
+                          </div>
+                      ))
+                    }
+                </span>
+              </div>
+          </div>
+        <div className='chatroom'>
+          <form onSubmit={handleSubmit}>
+            <input
+              value={formValue}
+              onChange={(e) => setFormValue(e.target.value)}
+              placeholder="Type your message"
+              className='type-text'
+            />
+            <button type="submit" disabled={!formValue} className='send-text'>
+              Send
+            </button>
+    
+          </form>
         </div>
-      <div className='chatroom'>
-        <form onSubmit={handleSubmit}>
-          <input
-            value={formValue}
-            onChange={(e) => setFormValue(e.target.value)}
-            placeholder="Type your message"
-            className='type-text'
-          />
-          <button type="submit" disabled={!formValue} className='send-text'>
-            Submit
-          </button>
-  
-        </form>
       </div>
-
-    </div>
   );
 }
 
