@@ -74,7 +74,7 @@ function Fanclub() {
 
 	useEffect(() => {
 		loadDMs()
-	}, [user, chats])
+	}, [user])
 
 	const copyInviteLink = async () => {
 		const inviteLink = await window.location.href;
