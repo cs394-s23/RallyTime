@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import DM from './DM.js';
-import './card.css';
+import './DMListBox.css';
 
 function DMListBox({ docid, data }) {
   const [showModal, setShowModal] = useState(false);
