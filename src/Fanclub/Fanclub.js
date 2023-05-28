@@ -15,6 +15,7 @@ function Fanclub() {
 	const [fanclubData, setFanclubData] = useState({})
 	const [chats, setChats] = useState([])
 	const user = useAuth();
+	const [isCopied, setIsCopied] = useState(false);
 
 	const loadFanclub = async () => {
 		const docRef = doc(db, 'fanclub', docid);
@@ -37,7 +38,11 @@ function Fanclub() {
 			directMessageIDs.map(async (directMessageID) => {
 			  const chatRef = doc(db, 'chat', directMessageID);
 			  const chatSnapshot = await getDoc(chatRef);
-			  const userSet = new Set(chatSnapshot.data().members);
+			  const userSet = new Set()
+			  chatSnapshot.data().members.forEach((member) =>{
+				userSet.add(member.uid)
+			  })
+			  //const userSet = new Set(chatSnapshot.data().members);
 			  if (userSet.has(userID)) {
 				return chatSnapshot;
 			  }
@@ -74,41 +79,67 @@ function Fanclub() {
 
 	useEffect(() => {
 		loadDMs()
-	}, [user, chats])
+	}, [user])
 
 	const copyInviteLink = async () => {
 		const inviteLink = await window.location.href;
 		try {
-			await navigator.clipboard.writeText(inviteLink)
-			console.log('Copied link:', inviteLink)
-		} 
-		catch (error) {
-			console.log('Failed to copy:', error)
+		  await navigator.clipboard.writeText(inviteLink);
+		  setIsCopied(true); // Set copied status to true
+		  console.log('Copied link:', inviteLink);
+		  setTimeout(() => {
+			setIsCopied(false); // Reset copied status after 2 seconds
+		  }, 1000);
+		} catch (error) {
+		  console.log('Failed to copy:', error);
 		}
-	}
+	  };
 	
 	return (
 		<div>
 			<Navbar />
-			<div className='info'>
-				<h1>Fanclub for {fanclubData.athlete}</h1>
-				<h3>Manager: {fanclubData.manager}</h3>
-				<button onClick={copyInviteLink} className='invite_link'>
-					Copy Invite Link
-				</button>
+			<div className='page-container'>
+				{/* <div className='chat-sidebar'>
+					{
+						// <p>{data.members.map((member) => member.displayName).join(", ")}</p>
+						chats.length > 0 ? chats.map((chat) => (
+							
+							<DMListBox docid={chat.id} data={chat.data()} className='DM-list'>
+								
+							</DMListBox>
+						)) : <p>DM Not Loaded</p>
+					}
+				</div> */}
+
+				<div className='chat-sidebar'>
+					{chats.length > 0 ? (
+					chats.map((chat) => {
+						const members = chat.data().members;
+
+						return (
+						<DMListBox docid={chat.id} data={chat.data()} key={chat.id} className='DM-list'>
+							{members}
+						</DMListBox>
+						
+						);
+					})
+					) : (
+					<p>DM Not Loaded</p>
+					)}
+				</div>
+
+				<div className='main-chat'>
+					<div className='info'>
+						<h1>Fanclub for {fanclubData.athlete}</h1>
+						<h3>Manager: {fanclubData.manager}</h3>
+						<button onClick={copyInviteLink} className={`invite_link ${isCopied ? 'copied' : ''}`}>
+							{isCopied ? 'Copied!' : 'Copy Invite Link'}
+						</button>
+					</div>
+					<ChatRoom docid={docid} data={fanclubData} />
+				</div>
 			</div>
-			<ChatRoom docid={docid} data={fanclubData} />
-			{
-				chats.length > 0 ? chats.map((chat) => (
-					<DMListBox docid={chat.id} data={chat.data()}/>
-				)) : <p>DM Not Loaded</p>
-			}
-			{/* {
-				chats.length > 0 ? chats.map((chat) => (
-					<DM docid={chat.id} data={chat.data()}/>
-				)) : <p>DM Not Loaded</p>
-			} */}
-			
+		
 		</div>
 	)
 	
