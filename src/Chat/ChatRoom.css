@@ -24,10 +24,12 @@
     padding: 30px;
     margin: 0 auto;
     margin-top: 20px;
+    margin-right: 400px;
     background-color:  rgb(29, 66, 138);
     border-radius: 25px;
     color: #333;
     width: 600px;
+    float:right;
   }
   
    .chatroom-container {

@@ -22,7 +22,40 @@
     padding: 20px;
     box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.3);
   }
+
+  .dm-content {
+    position: absolute;
+    top: 40px;
+    left: 50%;
+    transform: translateX(-50%);
+    background-color: white;
+    width: 80%;
+    max-height: 80%;
+    overflow: scroll;
+    padding: 20px;
+    box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.3);
+  }
+
+  .one-DM {
+    padding: 5px;
+    margin: 10px;
+    margin-bottom: 5px;
+    border: none;
+    border-radius: 5px;
+    background-color: #C7E0FF; 
+    color: black;
+    font-size: 15px;
+    font-weight: bold;
+    text-decoration: none;
+    align-items: center;
+    /* justify-content: center; */
+  }
     
+  .dm-list {
+    font-size: 30px;
+    padding-left: 0px;
+  }
+
     .close {
       color: #aaaaaa;
       float: right;

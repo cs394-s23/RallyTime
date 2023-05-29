@@ -113,13 +113,6 @@ function Fanclub() {
 		<div>
 			<Navbar />
 			<div className='page-container'>
-				<div className='chat-sidebar'>
-					{
-						chats.length > 0 ? chats.map((chat) => (
-							<DMListBox docid={chat.id} data={chat.data()} className='DM-list' />
-						)) : <p>DM Not Loaded</p>
-					}
-				</div>
 				<div className='main-chat'>
 					<div className='info'>
 						<h1>Fanclub for {fanclubData.athlete}</h1>
@@ -127,10 +120,17 @@ function Fanclub() {
 						<button onClick={copyInviteLink} className={`invite_link ${isCopied ? 'copied' : ''}`}>
 							{isCopied ? 'Copied!' : 'Copy Invite Link'}
 						</button>
+						<DMForm fanclubID={docid} fanclubData={fanclubData} />
 					</div>
 					<ChatRoom docid={docid} data={fanclubData} />
+					<div className='chat-sidebar'>
+					{
+						chats.length > 0 ? chats.map((chat) => (
+							<DMListBox docid={chat.id} data={chat.data()} className='DM-list' />
+						)) : <p>DM Not Loaded</p>
+					}
 				</div>
-				<DMForm fanclubID={docid} fanclubData={fanclubData} />
+				</div>
 			</div>
 		</div>
 	)
