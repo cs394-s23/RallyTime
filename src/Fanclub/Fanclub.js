@@ -7,6 +7,8 @@ import "./Fanclub.css";
 import Navbar from '../Dashboard/Navbar';
 import DM from '../DM/DM';
 import DMListBox from '../DM/DMListBox';
+import DMForm from '../DM/DMForm';
+
 function Fanclub() {
 	const { docid } = useParams();
 	const [fanclubData, setFanclubData] = useState({})
@@ -49,7 +51,7 @@ function Fanclub() {
 	};
 
 	const copyInviteLink = async () => {
-		const inviteLink = await window.location.href;
+		const inviteLink = window.location.href;
 		try {
 			await navigator.clipboard.writeText(inviteLink);
 			setIsCopied(true); // Set copied status to true
@@ -100,22 +102,27 @@ function Fanclub() {
 		<div>
 			<Navbar />
 			<div className='page-container'>
-				<div className='chat-sidebar'>
+				<div className='main-chat'>
+					<div className='info'>
+						<h1>Fanclub for {fanclubData.athlete}</h1>
+						{
+							fanclubData.manager ? <h3>Manager: {fanclubData.manager.displayName}</h3> : <p>Loading...</p>
+						}
+						
+						{/* <h3>Manager: {fanclubData.manager.displayName}</h3> */}
+						<button onClick={copyInviteLink} className={`invite_link ${isCopied ? 'copied' : ''}`}>
+							{isCopied ? 'Copied!' : 'Copy Invite Link'}
+						</button>
+						<DMForm fanclubID={docid} fanclubData={fanclubData} />
+					</div>
+					<ChatRoom docid={docid} data={fanclubData} />
+					<div className='chat-sidebar'>
 					{
 						chats.length > 0 ? chats.map((chat) => (
 							<DMListBox docid={chat.id} data={chat.data()} className='DM-list' />
 						)) : <p>DM Not Loaded</p>
 					}
 				</div>
-				<div className='main-chat'>
-					<div className='info'>
-						<h1>Fanclub for {fanclubData.athlete}</h1>
-						<h3>Manager: {fanclubData.manager}</h3>
-						<button onClick={copyInviteLink} className={`invite_link ${isCopied ? 'copied' : ''}`}>
-							{isCopied ? 'Copied!' : 'Copy Invite Link'}
-						</button>
-					</div>
-					<ChatRoom docid={docid} data={fanclubData} />
 				</div>
 			</div>
 		</div>

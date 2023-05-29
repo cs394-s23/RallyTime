@@ -63,7 +63,7 @@
     padding: 10px;
     border: none;
     border-radius: 5px;
-    background-color: rgb(255, 199, 44); 
+    background-color: #C7E0FF;
     color: #fff;
     font-size: 14px;
     font-weight: bold;
@@ -91,35 +91,12 @@
     justify-content: center;
 }
 
-.invite_link:hover {
-  background-color: rgb(29, 66, 138);
-}
-
-.page-container {
-  display: flex;
-}
-
-.DM-list {
-  background-color: #24292e;
-  font-size: 0.9rem;
-  line-height: 1.5;
-  padding: 1rem;
-  position: fixed;
-  top: 0;
-  right: 0;
-  width: 30%;
-  height: 100%;
-  overflow-y: auto; /* Enable vertical scrolling */
-  box-sizing: border-box;
-
-}
-
 .chat-sidebar {
-  width: 300px; /* Adjust the width as needed */
-  background-color: #fff;
-  box-shadow: 0 0 5px rgba(0, 0, 0, 0.3);
-  padding: 10px;
-  margin-top: 10px;
-  border: 2px solid rgb(255, 199, 44);
-  margin-right: 10px; /* Add some spacing between the sidebar and the info div */
+  float:left;
+  /* margin-top: 180px; */
+  margin-top: 25px;
+  margin-left: 30px;
+  border-style: solid;
+  border-radius: 10px;
+  /* padding-top:0%; */
 }

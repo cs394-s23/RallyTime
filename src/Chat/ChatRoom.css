@@ -21,14 +21,16 @@
 }
 
 .cont {
-  padding: 30px;
-  margin: 0 auto;
-  width: 70%;
-  margin-top: 80px;
-  background-color: rgb(29, 66, 138);
-  border-radius: 25px;
-  color: #333;
-}
+    padding: 30px;
+    margin: 0 auto;
+    margin-top: 20px;
+    margin-right: 400px;
+    background-color:  rgb(29, 66, 138);
+    border-radius: 25px;
+    color: #333;
+    width: 600px;
+    float:right;
+  }
   
 .chatroom-container {
 margin-top: 20px;
@@ -92,6 +94,28 @@ padding: 10px;
 .main-container {
   display: flex;
 }
+
+.temp{
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: flex-end;
+  padding:0;
+
+}
+
+.temp button {
+  margin: 0; /* Adjust the margin-right value as needed */
+}
+
+.temp .like-count {
+  margin-left: 5px; /* Adjust the margin-left value as needed */
+}
+
+.border-bottom {
+  word-wrap: break-word;
+}
+
 
 
 .group-members {
