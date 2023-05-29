@@ -2,6 +2,7 @@ import { useEffect, useState } from 'react';
 import { db } from '../Firebase';
 import { doc, updateDoc } from "firebase/firestore";
 import { useAuth } from '../Firebase';
+import './DMListBox.css';
 
 
 function DM({ docid, data }) {
@@ -43,6 +44,10 @@ function DM({ docid, data }) {
         <div className='cont'>
             <div className="box-shadow">
               <h1>DM</h1> <hr/>
+              <div className="members">
+                <span className='group-members'>Members:  </span>
+                <span>{data.members.map((member) => member.displayName).join(", ")}</span>
+              </div>
                 <div>
                   <span className='chat-backdrop'>
                       {
@@ -67,7 +72,7 @@ function DM({ docid, data }) {
                 className='type-text'
               />
               <button type="submit" disabled={!formValue} className='send-text'>
-                Submit
+                Send
               </button>
             </form>
           </div>

@@ -71,3 +71,8 @@
       text-decoration: none;
       cursor: pointer;
     }
+
+    .group-members {
+      font-weight: bold;
+      margin-right: 10px;
+    }
