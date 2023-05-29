@@ -17,6 +17,7 @@ function AddClub() {
             displayName: displayName
         }
         data.members.push(currUser)
+        data.manager = currUser
         let docRef = await addDoc(collection(db, 'fanclub'), data);
         return docRef.id;
     };
@@ -25,7 +26,7 @@ function AddClub() {
         const formik = useFormik({
             initialValues: {
                 athlete: '',
-                manager:'',
+                manager: {},
                 description:'',
                 group_messages: [],
                 direct_messages: [],
@@ -49,14 +50,14 @@ function AddClub() {
                         value={formik.values.athlete}
                     />
 
-                    <Form.Label>Manager</Form.Label>
+                    {/* <Form.Label>Manager</Form.Label>
                     <Form.Control
                         id='manager'
                         name='manager'
                         type='text'
                         onChange={formik.handleChange}
                         value={formik.values.manager}
-                    />          
+                    />           */}
 
                     <Form.Label>Description</Form.Label>
                     <Form.Control

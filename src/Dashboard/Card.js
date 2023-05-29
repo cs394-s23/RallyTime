@@ -8,7 +8,7 @@ function Card({ docid, doc }) {
     <div className='card'>
       {/* <p>{docid}</p> */}
       <p>Athlete: {doc.athlete}</p>
-      <p>Manager: {doc.manager}</p>
+      <p>Manager: {doc.manager.displayName}</p>
       <Link to={`/fanclub/${docid}`} className='more-button'>Enter Club</Link>
     </div>
   )

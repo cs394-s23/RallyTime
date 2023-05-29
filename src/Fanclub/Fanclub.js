@@ -105,7 +105,11 @@ function Fanclub() {
 				<div className='main-chat'>
 					<div className='info'>
 						<h1>Fanclub for {fanclubData.athlete}</h1>
-						<h3>Manager: {fanclubData.manager}</h3>
+						{
+							fanclubData.manager ? <h3>Manager: {fanclubData.manager.displayName}</h3> : <p>Loading...</p>
+						}
+						
+						{/* <h3>Manager: {fanclubData.manager.displayName}</h3> */}
 						<button onClick={copyInviteLink} className={`invite_link ${isCopied ? 'copied' : ''}`}>
 							{isCopied ? 'Copied!' : 'Copy Invite Link'}
 						</button>
