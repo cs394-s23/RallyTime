@@ -71,12 +71,3 @@
       text-decoration: none;
       cursor: pointer;
     }
-
-    .members {
-      display: flex;
-      align-items: center;
-    }
-    
-    .member-list {
-      display: flex;
-    }
