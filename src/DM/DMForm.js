@@ -10,7 +10,16 @@ import { getAuth, getUsers } from "firebase/auth";
 function DMForm({ fanclubID, fanclubData }) {
 
     const [members, setMembers] = useState([])
+    const [showModal, setShowModal] = useState(false);
     const user = useAuth();
+
+    const openModal = () => {
+        setShowModal(true);
+    };
+
+    const closeModal = () => {
+        setShowModal(false);
+    };
 
     async function submitForm(data) {
         const uid = await user.uid
@@ -72,47 +81,56 @@ function DMForm({ fanclubID, fanclubData }) {
         };
 
         return (
-            <div id="wholeform">
-                <h1>Create a New Chatroom!</h1>
-                <Form onSubmit={formik.handleSubmit}>
-                    <Form.Label>First Message</Form.Label>
-                    <Form.Control
-                        id="first-message"
-                        name="messages"
-                        type="text"
-                        onChange={formik.handleChange}
-                        value={formik.values.messages}
-                    />
-                    <Form.Label>Select Members</Form.Label>
-                    {members ? (
-                        members.map((member) => {
-                            // Skip current user
-                            if (member.uid === user.uid) {
-                                return null;
-                            }
+            <div>
+                <button onClick={openModal}>Create a New Chatroom!</button>
+                    {showModal && (
+                        <div>
+                            <div className="dm-content">
+                                <span className="close" onClick={closeModal}>
+                                &times;
+                                </span>
+                                <Form onSubmit={formik.handleSubmit}>
+                                <Form.Label>First Message</Form.Label>
+                                    <Form.Control
+                                    id="first-message"
+                                    name="messages"
+                                    type="text"
+                                    onChange={formik.handleChange}
+                                    value={formik.values.messages}
+                                />
+                                <Form.Label>Select Members</Form.Label>
+                                {members ? (
+                                    members.map((member) => {
+                                        // Skip current user
+                                        if (member.uid === user.uid) {
+                                            return null;
+                                        }
 
-                            return (
-                                <div key={member.uid}>
-                                    <Form.Check
-                                        type="checkbox"
-                                        id={member.uid}
-                                        name="members"
-                                        label={member.displayName}
-                                        value={member.uid} // Set value to user ID only
-                                        onChange={handleCheckboxChange} // Use custom handler
-                                        checked={formik.values.members.some((m) => m.uid === member.uid)} // Check if user ID exists in members array
-                                    />
-                                </div>
-                            );
-                        })
-                    ) : (
-                        <p>Loading all users...</p>
+                                        return (
+                                            <div key={member.uid}>
+                                                <Form.Check
+                                                    type="checkbox"
+                                                    id={member.uid}
+                                                    name="members"
+                                                    label={member.displayName}
+                                                    value={member.uid} // Set value to user ID only
+                                                    onChange={handleCheckboxChange} // Use custom handler
+                                                    checked={formik.values.members.some((m) => m.uid === member.uid)} // Check if user ID exists in members array
+                                                />
+                                            </div>
+                                        );
+                                    })
+                                ) : (
+                                    <p>Loading all users...</p>
+                                )}
+
+                                <button className="bttn" type="submit">
+                                    Submit
+                                </button>
+                            </Form>
+                            </div>
+                        </div>
                     )}
-
-                    <button className="bttn" type="submit">
-                        Submit
-                    </button>
-                </Form>
             </div>
         );
     };
