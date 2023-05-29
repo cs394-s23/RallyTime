@@ -1,80 +1,126 @@
-import {useFormik} from "formik"
+import { useFormik } from "formik"
 import { db, storage, fbapp } from "../Firebase.js"
-import { addDoc, collection } from "firebase/firestore"
+import { addDoc, collection, updateDoc, doc, getDoc } from "firebase/firestore"
 import Form from 'react-bootstrap/Form';
 import { useAuth } from '../Firebase';
 import Navbar from "../Dashboard/Navbar.js";
-import "./AddClub.css"
+import { useEffect, useState } from "react";
+import { getAuth, getUsers } from "firebase/auth";
 
-function DMForm() {
+function DMForm({ fanclubID, fanclubData }) {
+
+    const [members, setMembers] = useState([])
     const user = useAuth();
 
     async function submitForm(data) {
-        data.members.push(await user.uid)
-        let docRef = await addDoc(collection(db, 'fanclub'), data);
-        return docRef.id;
+        const uid = await user.uid
+        const displayName = await user.displayName
+        const currUser = {
+            uid: uid,
+            displayName: displayName
+        }
+        const firstMessage = {
+            content: data.messages,
+            userID: uid,
+            userName: displayName
+        }
+        data.members.push(currUser)
+        data.messages = [firstMessage]
+        const chatRef = await addDoc(collection(db, 'chat'), data);
+        const fanclubRef = doc(db, 'fanclub', fanclubID)
+        const fanclubSnapshot = await getDoc(fanclubRef)
+        await updateDoc(fanclubRef, { direct_messages: [...fanclubSnapshot.data().direct_messages, chatRef.id]})
+        console.log(fanclubSnapshot.data())
+        // return chatRef.id;
     };
-    
+
+    const loadUsers = () => {
+        setMembers(fanclubData.members)
+    };
+
+
+    useEffect(() => {
+        loadUsers()
+    }, [fanclubData])
+
     const ClubForm = () => {
         const formik = useFormik({
             initialValues: {
-                athlete: '',
-                manager:'',
-                description:'',
-                group_messages: [],
-                direct_messages: [],
-                members: []
+                members: [],
+                messages: "",
             },
             onSubmit: async (values) => {
                 await submitForm(values);
+            },
+        });
+
+        const handleCheckboxChange = (event) => {
+            const { value, checked } = event.target;
+
+            // Get the member object associated with the checkbox
+            const member = members.find((m) => m.uid === value);
+
+            // Update the members array based on checkbox selection
+            if (checked) {
+                formik.setFieldValue("members", [...formik.values.members, member]);
+            } else {
+                formik.setFieldValue(
+                    "members",
+                    formik.values.members.filter((m) => m.uid !== value)
+                );
             }
-        })
+        };
 
         return (
             <div id="wholeform">
-                <h1>Create a Fanclub!</h1>
+                <h1>Create a New Chatroom!</h1>
                 <Form onSubmit={formik.handleSubmit}>
-                    <Form.Label>Athlete</Form.Label>
+                    <Form.Label>First Message</Form.Label>
                     <Form.Control
-                        id="athlete"
-                        name="athlete"
+                        id="first-message"
+                        name="messages"
                         type="text"
                         onChange={formik.handleChange}
-                        value={formik.values.athlete}
+                        value={formik.values.messages}
                     />
+                    <Form.Label>Select Members</Form.Label>
+                    {members ? (
+                        members.map((member) => {
+                            // Skip current user
+                            if (member.uid === user.uid) {
+                                return null;
+                            }
 
-                    <Form.Label>Manager</Form.Label>
-                    <Form.Control
-                        id='manager'
-                        name='manager'
-                        type='text'
-                        onChange={formik.handleChange}
-                        value={formik.values.manager}
-                    />          
+                            return (
+                                <div key={member.uid}>
+                                    <Form.Check
+                                        type="checkbox"
+                                        id={member.uid}
+                                        name="members"
+                                        label={member.displayName}
+                                        value={member.uid} // Set value to user ID only
+                                        onChange={handleCheckboxChange} // Use custom handler
+                                        checked={formik.values.members.some((m) => m.uid === member.uid)} // Check if user ID exists in members array
+                                    />
+                                </div>
+                            );
+                        })
+                    ) : (
+                        <p>Loading all users...</p>
+                    )}
 
-                    <Form.Label>Description</Form.Label>
-                    <Form.Control
-                        id='description'
-                        name='description'
-                        type='text'
-                        onChange={formik.handleChange}
-                        value={formik.values.description}
-                    />
-
-                    
-                    <button className="bttn" type="submit">Submit</button>
+                    <button className="bttn" type="submit">
+                        Submit
+                    </button>
                 </Form>
             </div>
-        )
-    }
+        );
+    };
 
     return (
-        <>
-        <Navbar />
         <div>
             {ClubForm()}
         </div>
-        </>
     )
 }
 
