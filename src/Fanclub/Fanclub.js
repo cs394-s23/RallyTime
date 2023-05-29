@@ -8,6 +8,7 @@ import Navbar from '../Dashboard/Navbar';
 import DM from '../DM/DM';
 import DMListBox from '../DM/DMListBox';
 import DMForm from '../DM/DMForm';
+import MemberForm from '../Members/MemberForm';
 
 function Fanclub() {
 	const { docid } = useParams();
@@ -114,6 +115,7 @@ function Fanclub() {
 							{isCopied ? 'Copied!' : 'Copy Invite Link'}
 						</button>
 						<DMForm fanclubID={docid} fanclubData={fanclubData} />
+						<MemberForm fanclubID={docid} fanclubData={fanclubData} />
 					</div>
 					<ChatRoom docid={docid} data={fanclubData} />
 					<div className='chat-sidebar'>
