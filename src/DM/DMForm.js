@@ -77,7 +77,7 @@ function DMForm({ fanclubID, fanclubData }) {
 
         return (
             <div>
-                <button onClick={openModal}>Create a New Chatroom!</button>
+                <button onClick={openModal} className="chat">Create a New Chatroom!</button>
                 {showModal && (
                     <div>
                         <div className="dm-content">

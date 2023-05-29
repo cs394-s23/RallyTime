@@ -6,6 +6,7 @@ import { useAuth } from '../Firebase';
 import Navbar from "../Dashboard/Navbar.js";
 import { useEffect, useState } from "react";
 import { getAuth, getUsers } from "firebase/auth";
+import "./MemberForm.css";
 
 function MemberForm({ fanclubID, fanclubData }) {
 
@@ -78,7 +79,7 @@ function MemberForm({ fanclubID, fanclubData }) {
             !user || !members ? <p>Loading...</p>
                 : user && fanclubData.manager && user.uid === fanclubData.manager.uid ?
                     <div>
-                        <button onClick={openModal}>Members</button>
+                        <button onClick={openModal} className="view">View Members</button>
                         {showModal && (
                             <div>
                                 <div className="dm-content">
@@ -123,7 +124,7 @@ function MemberForm({ fanclubID, fanclubData }) {
                     </div>
                     :
                     <div>
-                        <button onClick={openModal}>Members</button>
+                        <button onClick={openModal} className="view">View Members</button>
                         {
                             showModal &&
                             <div>
