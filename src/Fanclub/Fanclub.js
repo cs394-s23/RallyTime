@@ -51,7 +51,7 @@ function Fanclub() {
 	};
 
 	const copyInviteLink = async () => {
-		const inviteLink = await window.location.href;
+		const inviteLink = window.location.href;
 		try {
 			await navigator.clipboard.writeText(inviteLink);
 			setIsCopied(true); // Set copied status to true
@@ -97,17 +97,6 @@ function Fanclub() {
 	useEffect(() => {
 		loadDMs()
 	}, [user])
-
-	const copyInviteLink = async () => {
-		const inviteLink = await window.location.href;
-		try {
-			await navigator.clipboard.writeText(inviteLink)
-			console.log('Copied link:', inviteLink)
-		} 
-		catch (error) {
-			console.log('Failed to copy:', error)
-		}
-	}
 	
 	return (
 		<div>
