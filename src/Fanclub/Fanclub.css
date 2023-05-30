@@ -81,8 +81,10 @@
     margin-bottom: 5px;
     border: none;
     border-radius: 5px;
-    background-color: rgb(255, 199, 44); 
-    color: #fff;
+    border-color: rgb(255, 199, 44);
+    border-style: solid;
+    background-color: white; 
+    color: rgb(255, 199, 44);
     font-size: 15px;
     font-weight: bold;
     text-decoration: none;
@@ -90,12 +92,30 @@
     justify-content: center;
 }
 
+.invite_link:hover {
+  padding: 5px;
+  margin: 10px;
+  margin-bottom: 5px;
+  border: none;
+  border-radius: 5px;
+  background-color: rgb(255, 199, 44);
+  color: #fff;
+  font-size: 15px;
+  font-weight: bold;
+  text-decoration: none;
+  align-items: center;
+  justify-content: center;
+}
+
 .chat-sidebar {
   float:left;
-  /* margin-top: 180px; */
-  margin-top: 25px;
-  margin-left: 30px;
+  margin-left: 50px;
   border-style: solid;
   border-radius: 10px;
-  /* padding-top:0%; */
+}
+
+.button-container {
+  display: flex;
+  gap: 10px;
+  justify-content: center;
 }
