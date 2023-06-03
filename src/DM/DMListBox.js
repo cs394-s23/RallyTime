@@ -17,6 +17,7 @@ function DMListBox({ docid, data }) {
     <div>
       {/* <span className="dm-list">Your DMs</span> */}
       <br></br>
+      
       <button onClick={openModal} className='one-DM'>{data.members[0].displayName}</button>
       {showModal && (
         <div className="modal">
