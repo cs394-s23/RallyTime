@@ -143,7 +143,7 @@ function ChatRoom({ docid, data }) {
             className='type-text'
           />
           <button type="submit" disabled={!formValue} className='send-text'>
-            Submit
+            Send
           </button>
         </form>
       </div>

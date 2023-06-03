@@ -8,6 +8,7 @@ import Navbar from '../Dashboard/Navbar';
 import DM from '../DM/DM';
 import DMListBox from '../DM/DMListBox';
 import DMForm from '../DM/DMForm';
+import MemberForm from '../Members/MemberForm';
 
 function Fanclub() {
 	const { docid } = useParams();
@@ -110,12 +111,16 @@ function Fanclub() {
 						}
 						
 						{/* <h3>Manager: {fanclubData.manager.displayName}</h3> */}
-						<button onClick={copyInviteLink} className={`invite_link ${isCopied ? 'copied' : ''}`}>
-							{isCopied ? 'Copied!' : 'Copy Invite Link'}
-						</button>
-						<DMForm fanclubID={docid} fanclubData={fanclubData} />
+						<div className='button-container'>
+							<button onClick={copyInviteLink} className={`invite_link ${isCopied ? 'copied' : ''}`}>
+								{isCopied ? 'Copied!' : 'Copy Invite Link'}
+							</button>
+							<DMForm fanclubID={docid} fanclubData={fanclubData} />
+							<MemberForm fanclubID={docid} fanclubData={fanclubData} />
+						</div>
 					</div>
 					<ChatRoom docid={docid} data={fanclubData} />
+					<h1>Your DMs</h1>
 					<div className='chat-sidebar'>
 					{
 						chats.length > 0 ? chats.map((chat) => (

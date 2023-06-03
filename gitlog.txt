@@ -1,0 +1,123 @@
+commit aac37838da66ce36ccf4c11df15553d3e3cff312
+Author: ckm67 <77990605+ckm67@users.noreply.github.com>
+Date:   Sun May 7 20:34:31 2023 -0500
+
+    working on chat
+
+M	package-lock.json
+M	package.json
+M	src/App.js
+A	src/Chat/Chat.css
+A	src/Chat/Chat.js
+M	src/Firebase.js
+
+commit 1d218e2c496b2d13475c38e7e35b94ed98959ef2
+Author: Kyle Jung <kyle12jung@gmail.com>
+Date:   Sun May 7 20:33:51 2023 -0500
+
+    dashboard fanclub filter implemented
+
+M	package-lock.json
+M	package.json
+M	src/Dashboard/Dashboard.js
+M	src/Firebase.js
+
+commit 052f05772ffa904a1f55922f0b60f1a6be191795
+Author: Kyle Jung <kyle12jung@gmail.com>
+Date:   Sun May 7 11:35:37 2023 -0500
+
+    dashboard primitive version implemented
+
+A	src/Dashboard/Card.css
+A	src/Dashboard/Card.js
+M	src/Dashboard/Dashboard.js
+
+commit c304ebc1269177d2f212ef5331d53f0496a2d296
+Author: Kyle Jung <kyle12jung@gmail.com>
+Date:   Sun May 7 10:20:50 2023 -0500
+
+    routing after signin
+
+M	src/App.js
+M	src/Dashboard/Dashboard.js
+M	src/Firebase.js
+M	src/Landing.js
+
+commit b1deabf591607cce8368f83c21b4104e3034c223
+Author: Kyle Jung <kyle12jung@gmail.com>
+Date:   Sun May 7 10:09:42 2023 -0500
+
+    Dashboard implementing
+
+A	src/Dashboard/Dashboard.css
+A	src/Dashboard/Dashboard.js
+
+commit efa01a70cdf0f33c335ccc8a713f6547b467561e
+Author: jdaenzer123 <98292719+jdaenzer123@users.noreply.github.com>
+Date:   Thu May 4 12:07:19 2023 -0500
+
+    Landing
+
+A	src/Landing.js
+
+commit b552352f22ae98d3b1ec0345e0c916ed70f1bf73
+Author: jdaenzer123 <98292719+jdaenzer123@users.noreply.github.com>
+Date:   Thu May 4 12:06:31 2023 -0500
+
+    Signin works, Router setup
+
+M	package-lock.json
+M	package.json
+M	src/App.js
+M	src/Firebase.js
+
+commit 2ee4e55a5d04960a3266cb81c58db7c4f0fec614
+Author: jdaenzer123 <98292719+jdaenzer123@users.noreply.github.com>
+Date:   Thu May 4 11:39:45 2023 -0500
+
+    trying again
+
+M	package-lock.json
+M	package.json
+M	src/Firebase.js
+
+commit ec09c65f811e5295642a9fe1bcf903dc167b4b9d
+Author: jdaenzer123 <98292719+jdaenzer123@users.noreply.github.com>
+Date:   Thu May 4 11:34:22 2023 -0500
+
+    firebase_init
+
+A	src/Firebase.js
+
+commit 7313cab99d3cc6f93e0822bfe2184a86f8ee0043
+Author: Kyle Jung <kyle12jung@gmail.com>
+Date:   Thu May 4 10:55:42 2023 -0500
+
+    Initialize project using Create React App
+
+A	.gitignore
+A	README.md
+A	package-lock.json
+A	package.json
+A	public/favicon.ico
+A	public/index.html
+A	public/logo192.png
+A	public/logo512.png
+A	public/manifest.json
+A	public/robots.txt
+A	src/App.css
+A	src/App.js
+A	src/App.test.js
+A	src/index.css
+A	src/index.js
+A	src/logo.svg
+A	src/reportWebVitals.js
+A	src/setupTests.js
+
+commit 5a308492baf0d1e3554b9cf3ec5177ea457b00f2
+Author: Kyle Jung <46063694+kyle12jung@users.noreply.github.com>
+Date:   Thu May 4 10:29:46 2023 -0500
+
+    Initial commit
+
+A	LICENSE

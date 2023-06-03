@@ -1,6 +1,6 @@
-import { useFormik } from "formik"
-import { db, storage, fbapp } from "../Firebase.js"
-import { addDoc, collection, updateDoc, doc, getDoc } from "firebase/firestore"
+import { useFormik } from "formik";
+import { db, storage, fbapp } from "../Firebase.js";
+import { addDoc, collection, updateDoc, doc, getDoc } from "firebase/firestore";
 import Form from 'react-bootstrap/Form';
 import { useAuth } from '../Firebase';
 import Navbar from "../Dashboard/Navbar.js";
@@ -8,9 +8,9 @@ import { useEffect, useState } from "react";
 import { getAuth, getUsers } from "firebase/auth";
 
 function DMForm({ fanclubID, fanclubData }) {
-
-    const [members, setMembers] = useState([])
+    const [members, setMembers] = useState([]);
     const [showModal, setShowModal] = useState(false);
+    const [submissionStatus, setSubmissionStatus] = useState(null); // State variable to track form submission status
     const user = useAuth();
 
     const openModal = () => {
@@ -22,35 +22,33 @@ function DMForm({ fanclubID, fanclubData }) {
     };
 
     async function submitForm(data) {
-        const uid = await user.uid
-        const displayName = await user.displayName
+        const uid = await user.uid;
+        const displayName = await user.displayName;
         const currUser = {
             uid: uid,
             displayName: displayName
-        }
+        };
         const firstMessage = {
             content: data.messages,
             userID: uid,
             userName: displayName
-        }
-        data.members.push(currUser)
-        data.messages = [firstMessage]
+        };
+        data.members.push(currUser);
+        data.messages = [firstMessage];
         const chatRef = await addDoc(collection(db, 'chat'), data);
-        const fanclubRef = doc(db, 'fanclub', fanclubID)
-        const fanclubSnapshot = await getDoc(fanclubRef)
-        await updateDoc(fanclubRef, { direct_messages: [...fanclubSnapshot.data().direct_messages, chatRef.id]})
-        console.log(fanclubSnapshot.data())
-        // return chatRef.id;
+        const fanclubRef = doc(db, 'fanclub', fanclubID);
+        const fanclubSnapshot = await getDoc(fanclubRef);
+        await updateDoc(fanclubRef, { direct_messages: [...fanclubSnapshot.data().direct_messages, chatRef.id] });
+        setSubmissionStatus('success'); // Set the submission status to 'success' after successful form submission
     };
 
     const loadUsers = () => {
-        setMembers(fanclubData.members)
+        setMembers(fanclubData.members);
     };
 
-
     useEffect(() => {
-        loadUsers()
-    }, [fanclubData])
+        loadUsers();
+    }, [fanclubData]);
 
     const ClubForm = () => {
         const formik = useFormik({
@@ -65,11 +63,8 @@ function DMForm({ fanclubID, fanclubData }) {
 
         const handleCheckboxChange = (event) => {
             const { value, checked } = event.target;
-
-            // Get the member object associated with the checkbox
             const member = members.find((m) => m.uid === value);
 
-            // Update the members array based on checkbox selection
             if (checked) {
                 formik.setFieldValue("members", [...formik.values.members, member]);
             } else {
@@ -82,30 +77,29 @@ function DMForm({ fanclubID, fanclubData }) {
 
         return (
             <div>
-                <button onClick={openModal}>Create a New Chatroom!</button>
-                    {showModal && (
-                        <div>
-                            <div className="dm-content">
-                                <span className="close" onClick={closeModal}>
-                                &times;
-                                </span>
-                                <Form onSubmit={formik.handleSubmit}>
+                <button onClick={openModal} className="chat">Create a New Chatroom!</button>
+                {showModal && (
+                    <div>
+                        <div className="dm-content">
+                            <span className="close" onClick={closeModal}>&times;</span>
+                            {submissionStatus === 'success' && (
+                                <div className="confirmation">Group chat created successfully!</div>
+                            )}
+                            <Form onSubmit={formik.handleSubmit}>
                                 <Form.Label>First Message</Form.Label>
-                                    <Form.Control
+                                <Form.Control
                                     id="first-message"
                                     name="messages"
                                     type="text"
                                     onChange={formik.handleChange}
-                                    value={formik.values.messages}
+                                    value={formik.values.messages.content}
                                 />
                                 <Form.Label>Select Members</Form.Label>
                                 {members ? (
                                     members.map((member) => {
-                                        // Skip current user
                                         if (member.uid === user.uid) {
                                             return null;
                                         }
-
                                         return (
                                             <div key={member.uid}>
                                                 <Form.Check
@@ -113,9 +107,9 @@ function DMForm({ fanclubID, fanclubData }) {
                                                     id={member.uid}
                                                     name="members"
                                                     label={member.displayName}
-                                                    value={member.uid} // Set value to user ID only
-                                                    onChange={handleCheckboxChange} // Use custom handler
-                                                    checked={formik.values.members.some((m) => m.uid === member.uid)} // Check if user ID exists in members array
+                                                    value={member.uid}
+                                                    onChange={handleCheckboxChange}
+                                                    checked={formik.values.members.some((m) => m.uid === member.uid)}
                                                 />
                                             </div>
                                         );
@@ -123,14 +117,11 @@ function DMForm({ fanclubID, fanclubData }) {
                                 ) : (
                                     <p>Loading all users...</p>
                                 )}
-
-                                <button className="bttn" type="submit">
-                                    Submit
-                                </button>
+                                <button className="bttn" type="submit">Submit</button>
                             </Form>
-                            </div>
                         </div>
-                    )}
+                    </div>
+                )}
             </div>
         );
     };
@@ -139,7 +130,7 @@ function DMForm({ fanclubID, fanclubData }) {
         <div>
             {ClubForm()}
         </div>
-    )
+    );
 }
 
 export default DMForm;
