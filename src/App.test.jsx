@@ -32,6 +32,3 @@ test('renders App', async () => {
     //await screen.findByText('RallyTime');
     expect(await screen.findByText('Welcome to RallyTime')).toBeVisible()
 })
-
-
-
