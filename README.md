@@ -97,11 +97,10 @@ License: MIT
 
 <!-- ABOUT THE PROJECT -->
 ## About The Project
-<img src= "src/images/homescreen.png " alt= "image of HomeHop Dash board">
-[![Product Name Screen Shot][product-screenshot]](https://rally-time-ea874.web.app/)
+<img src= "public/homescreen.png " alt= "image of HomeHop Dash board">
+<!-- [![Product Name Screen Shot][product-screenshot]](https://rally-time-ea874.web.app/) -->
 
-Here's a blank template to get started: To avoid retyping too much info. Do a search and replace with your text editor for the following: `github_username`, `repo_name`, `twitter_handle`, `linkedin_username`, `email_client`, `email`, `project_title`, `project_description`
-
+RallyTime is a social app providing fans of athletes and others a way to support their star and get information on upcoming events. Anyone can make a Fanclub for their athlete and invite friends and family to join via link. Once in a Fanclub, members can chat to the whole Fanclub as well as directly in pairs or smaller groups.
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
 
@@ -150,7 +149,6 @@ Make sure to have Node.js and Node Package Manager (npm) installed.
     appId: "",
     measurementId: "",
     databaseURL: ""}
-;;
    ```
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
@@ -223,9 +221,10 @@ Project Link: [https://github.com/cs394-s23/RallyTime](https://github.com/cs394-
 <!-- ACKNOWLEDGMENTS -->
 ## Acknowledgments
 
-* []()
-* []()
-* []()
+Special thanks to:
+* our client, Van Ajemian, for his support and time
+* Professor Riesbeck, for his constant engagement and teaching us good development process
+* our fellow classmates, for testing our webapp and recommending changes
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
