@@ -1,9 +1,8 @@
 import { render, screen } from '@testing-library/react';
 import React from 'react';
-import LikeButton from './Chat/Like'
-import ChatRoom from './Chat/ChatRoom';
-import { useAuth } from './Firebase'
-jest.mock('./Firebase')
+import ChatRoom from '../Chat/ChatRoom';
+import { useAuth } from '../Firebase'
+jest.mock('../Firebase')
 jest.mock('firebase/firestore')
 
 const mockUser = {
