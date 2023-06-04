@@ -8,14 +8,14 @@ import { getDatabase } from "firebase/database";
 
 
 const firebaseConfig = {
-    apiKey: "AIzaSyArqA1i--TGXyuvN1yvf5WJTEjx01V7Tkc",
-    authDomain: "rally-time-ea874.firebaseapp.com",
-    projectId: "rally-time-ea874",
-    storageBucket: "rally-time-ea874.appspot.com",
-    messagingSenderId: "732935229980",
-    appId: "1:732935229980:web:963fb55172bc9beacd85d9",
-    measurementId: "G-FQD742J753",
-    databaseURL: "https://rally-time-ea874-default-rtdb.firebaseio.com/",
+    apiKey: "",
+    authDomain: "",
+    projectId: "",
+    storageBucket: "",
+    messagingSenderId: "",
+    appId: "",
+    measurementId: "",
+    databaseURL: "",
 
 };
 

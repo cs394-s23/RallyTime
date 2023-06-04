@@ -1,17 +1,13 @@
 import { render, screen } from '@testing-library/react'
 import userEvent from '@testing-library/user-event'
 import React from 'react'
-import App from './App'
-import LandingPage from './Landing'
-import Dashboard from './Dashboard/Dashboard'
-import { useAuth } from './Firebase'
+import { useAuth } from '../Firebase'
 import { collection, getDocs, getFirestore, getDoc } from 'firebase/firestore'
 import { initializeApp } from 'firebase/app'
 import { BrowserRouter } from 'react-router-dom'
-import Fanclub from './Fanclub/Fanclub'
-import MemberForm from './Members/MemberForm'
+import Fanclub from '../Fanclub/Fanclub'
 
-jest.mock('./Firebase')
+jest.mock('../Firebase')
 jest.mock('firebase/firestore')
 
 const mockUser = {
