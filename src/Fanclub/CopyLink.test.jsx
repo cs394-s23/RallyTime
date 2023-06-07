@@ -1,9 +1,9 @@
 import { render, screen, fireEvent } from '@testing-library/react';
-import Fanclub from './Fanclub/Fanclub';
-import { useAuth } from './Firebase';
+import Fanclub from './Fanclub';
+import { useAuth } from '../Firebase';
 import { doc, getDoc } from 'firebase/firestore';
 
-jest.mock('./Firebase');
+jest.mock('../Firebase');
 jest.mock('firebase/firestore');
 
 const mockUser = {

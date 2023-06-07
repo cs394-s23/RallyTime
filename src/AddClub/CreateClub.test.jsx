@@ -1,9 +1,9 @@
 import { render, screen, fireEvent } from '@testing-library/react'
 import React from 'react'
 import { BrowserRouter } from 'react-router-dom'
-import AddClub from './AddClub/AddClub'
+import AddClub from './AddClub'
 
-jest.mock('./Firebase')
+jest.mock('../Firebase')
 jest.mock('firebase/firestore')
 
 test('mock creating club', async () => {
