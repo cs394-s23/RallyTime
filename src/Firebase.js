@@ -30,7 +30,7 @@ export function useAuth() {
 const fbapp = initializeApp(firebaseConfig);
 const db = getFirestore(fbapp);
 const storage = getStorage(fbapp);
-const realtime_db = getDatabase(fbapp);
+// const realtime_db = getDatabase(fbapp);
 
 const auth = getAuth(fbapp);
 

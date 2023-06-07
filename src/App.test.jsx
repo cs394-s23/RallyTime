@@ -1,11 +1,11 @@
 import { render, screen } from '@testing-library/react'
 import React from 'react'
-import App from '../App'
+import App from './App'
 import { collection, getDocs, getFirestore } from 'firebase/firestore'
 import { initializeApp } from 'firebase/app'
 import { BrowserRouter } from 'react-router-dom'
 
-jest.mock('../Firebase')
+jest.mock('./Firebase')
 jest.mock('firebase/firestore')
 
 // const firebaseConfig = {

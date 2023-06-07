@@ -5,7 +5,7 @@ import { useAuth } from '../Firebase'
 import { collection, getDocs, getFirestore, getDoc } from 'firebase/firestore'
 import { initializeApp } from 'firebase/app'
 import { BrowserRouter } from 'react-router-dom'
-import Fanclub from '../Fanclub/Fanclub'
+import Fanclub from './Fanclub'
 
 jest.mock('../Firebase')
 jest.mock('firebase/firestore')

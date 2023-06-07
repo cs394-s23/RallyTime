@@ -1,7 +1,7 @@
 import { render, screen, waitFor } from '@testing-library/react';
 import { useAuth } from '../Firebase';
 import { collection, getDocs } from "firebase/firestore";
-import Dashboard from '../Dashboard/Dashboard';
+import Dashboard from './Dashboard';
 import React from 'react';
 import '@testing-library/jest-dom';
 

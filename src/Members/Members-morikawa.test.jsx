@@ -1,9 +1,9 @@
 import { render, screen, fireEvent } from '@testing-library/react';
 import React from 'react';
-import MemberForm from '../Members/MemberForm.js';
-import ChatRoom from '../Chat/ChatRoom';
+import MemberForm from './MemberForm.js';
+import ChatRoom from '../Chat/ChatRoom.js';
 
-import { useAuth } from '../Firebase'
+import { useAuth } from '../Firebase.js'
 
 
 jest.mock('../Firebase')

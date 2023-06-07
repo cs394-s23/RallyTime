@@ -1,6 +1,6 @@
 import { render, screen, fireEvent, waitFor } from '@testing-library/react';
 import React from 'react';
-import ChatRoom from '../Chat/ChatRoom';
+import ChatRoom from './ChatRoom';
 import { useAuth } from '../Firebase'
 
 jest.mock('../Firebase')
