@@ -52,7 +52,7 @@ License: MIT
 <h3 align="center">RallyTime</h3>
 
   <p align="center">
-    project_description
+    <!-- project_description -->
     <!-- <br />
     <a href="https://github.com/github_username/repo_name"><strong>Explore the docs »</strong></a>
     <br />
@@ -80,6 +80,7 @@ License: MIT
     <li>
       <a href="#getting-started">Getting Started</a>
       <ul>
+        <li><a href="#filestructure">File Structure</a></li>
         <li><a href="#prerequisites">Prerequisites</a></li>
         <li><a href="#installation">Installation</a></li>
       </ul>
@@ -120,6 +121,9 @@ RallyTime is a social app providing fans of athletes and others a way to support
 
 RallyTime is a serverless application hosted on Firebase.
 We use React.js as our frontend. The client will directly communicate with the Firestore DB.
+
+### File Structure
+All of the core components are folders. So the the component, subcomponents, tests, and the css files for the Chat component are under the Chat folder.
 
 ### Prerequisites
 
