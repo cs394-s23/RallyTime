@@ -1,0 +1,52 @@
+Stories,Team estimate,Estimates data,Ahn,Daenzer,Jung,Liew,Morikawa
+A club manager is able to create their own RallyTime club for desired athlete.,2,"Median: 2
+Span: 7
+?: 0",2,1,1,2,1
+A club manager is able to invite specifc supporters to join club via a custom link.,2,"Median: 2
+Span: 7
+?: 0",2,2,2,2,8
+Members are able to see which RallyTime clubs they are currently a part of via dashboard.,1,"Median: 2
+Span: 7
+?: 0",1,1,1,1,1
+Members of the club are able to send postive or sympathetic messages to the ahtlete in a group-chat format.,3,"Median: 2
+Span: 7
+?: 0",2,3,3,3,3
+Only the club manager is able to permanently remove and/or add specifc members.,2,"Median: 2
+Span: 7
+?: 0",1,2,2,3,3
+Members of the club are able to send direct messages to individuals in the club (including the ahtlete).,5,"Median: 2
+Span: 7
+?: 0",5,5,5,5,5
+Members of the club are able to make groupchats within the club.,5,"Median: 2
+Span: 7
+?: 0",5,8,5,5,2
+A member of the club has the option to send emojis to the athlete.,3,"Median: 2
+Span: 7
+?: 0",5,3,3,5,1
+"Members can ""like"" individual messages.",3,"Median: 2
+Span: 7
+?: 0",3,3,3,3,1
+Athletes and managers can send email notifications about upcoming events to all members of the club.,5,"Median: 2
+Span: 7
+?: 0",8,5,5,5,2
+Members see a confirmation page/an official invite to accept when they are asked to join a club.,2,"Median: 2
+Span: 7
+?: 0",2,2,2,2,2
+Everyone in a fan club can view all the members.,1,"Median: 2
+Span: 7
+?: 0",1,1,1,1,2
+Athletes and managers can create events.,3,"Median: 2
+Span: 7
+?: 0",3,2,2,3,1
+Members can leave fanclubs.,1,"Median: 2
+Span: 7
+?: 0",2,1,1,1,1
+Members can update/edit their own profile pages.,3,"Median: 2
+Span: 7
+?: 0",3,3,3,3,2
+Members can sign in/logout.,1,"Median: 2
+Span: 7
+?: 0",1,1,1,1,1
+Members encounter a character limit whenever they craft a message.,2,"Median: 2
+Span: 7
+?: 0",2,2,2,2,1
